@@ -1,0 +1,154 @@
+# 🫁 LungCare AI - Trợ lý Tư vấn Thông tin Ung thư Phổi (RAG MVP)
+
+<div align="center">
+
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-00a393.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Ollama](https://img.shields.io/badge/Ollama-llama3.2-orange.svg?style=for-the-badge)](https://ollama.com)
+[![Docker](https://img.shields.io/badge/Docker-Compatible-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
+[![RAG](https://img.shields.io/badge/RAG-BM25-purple.svg?style=for-the-badge)](#)
+
+*Hệ thống chatbot tư vấn thông tin ung thư phổi dựa trên kiến trúc RAG (Retrieval-Augmented Generation), thu thập dữ liệu từ các nguồn y tế uy tín của Việt Nam.*
+
+[Khởi chạy nhanh](#-hướng-dẫn-khởi-chạy) • [Kiến trúc Pipeline](#-rag-pipeline-architecture) • [Tính năng nổi bật](#-tính-năng-cốt-lõi) • [Nguồn dữ liệu](#-nguồn-dữ-liệu-y-khoa)
+
+</div>
+
+---
+
+## ✨ Tính năng Cốt lõi
+
+*   **Backend Siêu tốc với FastAPI**: Hỗ trợ xử lý bất đồng bộ (Async) và tự động sinh tài liệu API (Swagger UI) tại `/docs`.
+*   **Medical Data Audit (Kiểm toán Y khoa)**: Tích hợp hệ thống theo dõi và báo cáo phiên bản, trạng thái hiệu lực của tài liệu y khoa (`data_audit.json`).
+*   **Tách từ tiếng Việt chuyên dụng (`underthesea`)**: Kết hợp các cụm từ chuyên môn đa âm tiết (như `ung_thư_phổi`, `hóa_trị_liệu`), ngăn chặn lỗi chia nhỏ token làm mất ngữ nghĩa.
+*   **Tìm kiếm từ khóa BM25 tối ưu**: Sử dụng thuật toán BM25 chuẩn hóa độ dài văn bản để khớp từ khóa chính xác nhất.
+*   **Sentence-Split Interleaving**: Tách câu hỏi nhiều ý thành các câu đơn, tìm kiếm riêng lẻ và trộn xen kẽ kết quả.
+*   **Interactive Citation Links**: Tự động chuyển đổi trích dẫn `[1]`, `[2]` thành link hoạt họa, cuộn và flash thẻ tài liệu.
+*   **Streaming Response (SSE)**: Phản hồi thời gian thực bằng Server-Sent Events.
+*   **An toàn Y khoa**: Không chẩn đoán, không đề xuất phác đồ cụ thể, luôn khuyên đi khám chuyên khoa.
+
+---
+
+## 📐 RAG Pipeline Architecture
+
+```mermaid
+flowchart TD
+    classDef cyan fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff;
+    classDef purple fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff;
+    classDef green fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff;
+    classDef gray fill:#374151,stroke:#4b5563,stroke-width:1px,color:#fff;
+
+    subgraph DataPrep ["1. CHUẨN BỊ DỮ LIỆU"]
+        A["scraper.py<br/>Cào dữ liệu<br/>Vinmec, Tâm Anh, BV K"]:::cyan
+        B["MOH Guidelines<br/>Hướng dẫn Bộ Y tế"]:::cyan
+        C["knowledge_base.json<br/>Cơ sở dữ liệu y khoa"]:::gray
+    end
+
+    subgraph Retrieval ["2. TÌM KIẾM (BM25)"]
+        D["Tokenizer<br/>underthesea"]:::purple
+        E["BM25 Scoring<br/>+ Title Boost"]:::purple
+        F["Sentence-Split<br/>Interleaving"]:::purple
+    end
+
+    subgraph Generation ["3. TẠO PHẢN HỒI"]
+        G["System Prompt<br/>An toàn Y khoa"]:::green
+        H["Ollama LLM<br/>llama3.2"]:::green
+        I["SSE Streaming<br/>Phản hồi thời gian thực"]:::green
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+```
+
+---
+
+## 🏥 Nguồn Dữ liệu Y khoa
+
+| # | Nguồn | Loại | Ghi chú |
+|---|---|---|---|
+| 1 | **Bệnh viện Tâm Anh** | Bệnh viện tư nhân uy tín | Bài viết chuyên sâu về ung thư phổi |
+| 2 | **Vinmec** | Hệ thống y tế hàng đầu | Nhiều bài viết đa dạng |
+| 3 | **Bệnh viện K** | Viện Ung bướu Quốc gia | Nguồn chuyên khoa ung thư hàng đầu |
+| 4 | **Bộ Y tế Việt Nam** | Hướng dẫn lâm sàng chính thức | Phác đồ chẩn đoán & điều trị |
+
+---
+
+## 🚀 Hướng dẫn Khởi chạy
+
+### Yêu cầu
+- Python 3.10+
+- [Ollama](https://ollama.com) đã cài đặt và chạy model `llama3.2`
+
+### Cài đặt
+
+```bash
+# 1. Clone repository
+git clone https://github.com/<your-username>/lungcare-ai.git
+cd lungcare-ai
+
+# 2. Tạo virtual environment
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+
+# 3. Cài đặt dependencies
+pip install -r requirements.txt
+
+# 4. Cào dữ liệu y khoa
+python data_pipeline/scraper.py
+
+# 5. Khởi động Ollama (terminal khác)
+ollama run llama3.2
+
+# 6. Chạy server
+python main.py
+```
+
+Truy cập: [http://localhost:5080](http://localhost:5080)
+
+### Docker
+
+```bash
+docker-compose up --build
+```
+
+---
+
+## 📁 Cấu trúc dự án
+
+```
+lungcare-ai/
+├── main.py                  # FastAPI server + API endpoints
+├── retrieval.py             # BM25 RAG engine
+├── requirements.txt         # Python dependencies
+├── Dockerfile               # Docker build config
+├── docker-compose.yml       # Docker Compose config
+├── data/
+│   ├── knowledge_base.json  # Cơ sở dữ liệu y khoa (generated)
+│   └── data_audit.json      # Kiểm toán nguồn dữ liệu
+├── data_pipeline/
+│   ├── scraper.py           # Web scraper thu thập dữ liệu
+│   └── generate_audit.py    # Sinh báo cáo kiểm toán
+├── templates/
+│   └── index.html           # Giao diện chatbot
+└── static/
+    ├── css/style.css         # Stylesheet
+    └── js/chat.js            # Client-side JavaScript
+```
+
+---
+
+## ⚠️ Miễn trừ trách nhiệm
+
+> LungCare AI là công cụ hỗ trợ tra cứu thông tin y khoa, **KHÔNG** thay thế cho bác sĩ chuyên khoa. Mọi thông tin chỉ mang tính tham khảo. Nếu bạn nghi ngờ có triệu chứng ung thư phổi, hãy đến cơ sở y tế chuyên khoa Ung bướu hoặc Hô hấp để được khám và tư vấn.
+
+---
+
+## 📄 License
+
+MIT License © 2026
