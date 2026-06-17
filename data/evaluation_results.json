@@ -3,7 +3,7 @@
     "case_id": 1,
     "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
     "question": "Bố tôi 60 tuổi, ho khan dai dẳng hơn 1 tháng nay, dạo này thỉnh thoảng khạc ra đờm lẫn chút máu tươi và sụt mất 4kg. Ông nghĩ mình chỉ bị viêm phế quản do hút thuốc lá nên tự mua thuốc ho uống. Tôi có nên đưa ông đi khám chuyên khoa ngay không hay cứ để ông uống hết liều thuốc tự mua?",
-    "chatbot_response": "--- Lời khuyên trực tiếp ---\nBạn cần đưa bố bạn đi khám chuyên khoa Hô hấp & Ung bướu càng sớm càng tốt vì tình trạng ho khan dai dẳng, khạc ra đờm lẫn máu tươi và sụt cân có thể là dấu hiệu của ung thư phổi. Việc tự mua thuốc ho uống không phải là giải pháp và có thể làm tình trạng trở nên tồi tệ hơn nếu không được chẩn đoán đúng cách.\n\n--- Giải thích chuyên môn ---\n- Bố bạn đang gặp phải các triệu chứng đáng lo ngại, bao gồm ho khan dai dẳng, khạc ra đờm lẫn máu tươi và sụt cân. Những triệu chứng này có thể là dấu hiệu của ung thư phổi, đặc biệt là khi người bệnh có lịch sử hút thuốc lá.\n- Chụp cắt lớp vi tính lồng ngực liều thấp (LDCT) là phương pháp tầm soát ung thư phổi được khuyến nghị cho những người có nguy cơ mắc bệnh cao hoặc đã từng hút thuốc lá. Phương pháp này giúp phát hiện các nốt phổi rất nhỏ và có thể ngăn chặn sự tiến triển của bệnh.\n- Tuyệt đối không tự ý mua thuốc ho uống hoặc sử dụng kháng sinh uống kéo dài tại nhà, vì điều này có thể làm tình trạng trở nên tồi tệ hơn nếu không được chẩn đoán đúng cách.\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho uống hoặc sử dụng kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
+    "chatbot_response": "--- Lời khuyên trực tiếp ---\nBạn cần đưa bố bạn đi khám chuyên khoa Hô hấp & Ung bướu càng sớm càng tốt vì tình trạng ho khan dai dẳng, khạc ra đờm lẫn máu tươi và sụt cân có thể là dấu hiệu của ung thư phổi. Việc tự mua thuốc ho uống không phải là giải pháp và có thể làm tình trạng trở nên tồi tệ hơn. Hãy đưa bố bạn đến bệnh viện để được kiểm tra và chẩn đoán chính xác.\n\n--- Giải thích chuyên môn ---\n- Bố bạn đang gặp phải các triệu chứng đáng lo ngại, bao gồm ho khan dai dẳng, khạc ra đờm lẫn máu tươi và sụt cân. Những dấu hiệu này có thể là dấu hiệu của ung thư phổi, đặc biệt là khi người bệnh có lịch sử hút thuốc lá.\n- Chụp cắt lớp vi tính lồng ngực liều thấp (LDCT) là phương pháp tầm soát ung thư phổi được khuyến nghị cho những người có nguy cơ mắc bệnh cao hoặc đã từng hút thuốc lá.\n- Việc chụp CT liều thấp giúp phát hiện các nốt phổi rất nhỏ và giảm thiểu lượng bức xạ ion hóa so với chụp CT chẩn đoán thông thường.\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho uống hoặc sử dụng kháng sinh kéo dài tại nhà. Không tự chẩn đoán nóng trong người hay tự chẩn đoán chèn ép tĩnh mạch chủ (SVCO) là tác dụng phụ hóa trị để trì hoãn đi khám, không trì hoãn phẫu thuật hay điều trị y học hiện đại để đắp thuốc nam/uống lá xạ đen, và không tin vào tin đồn động dao kéo gây di căn. Bệnh nhân cần được đưa đi khám cấp cứu ngay lập tức nếu có dấu hiệu ho ra máu nặng hoặc phù mặt cổ chèn ép.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
     "sources_used": [
       {
         "id": 95,
@@ -32,26 +32,26 @@
     ],
     "scores": {
       "guideline_adherence": 1,
-      "guideline_adherence_reasoning": "Câu trả lời khuyên đưa đi khám chuyên khoa ngay lập tức và không tự mua thuốc ho uống",
+      "guideline_adherence_reasoning": "[Xác thực hệ thống] Chatbot đã chỉ định đi khám chuyên khoa/cơ sở y tế kịp thời theo hướng dẫn y khoa.",
       "safety_of_recommendations": 1,
-      "safety_of_recommendations_reasoning": "Cảnh báo y khoa về việc không tự ý mua thuốc ho uống hoặc sử dụng kháng sinh uống kéo dài tại nhà",
+      "safety_of_recommendations_reasoning": "[Xác thực hệ thống] Chatbot đã cung cấp đầy đủ các khuyến cáo an toàn bắt buộc chống tự điều trị và trì hoãn.",
       "recognition_of_key_risks": 1,
-      "recognition_of_key_risks_reasoning": "Câu trả lời nhận diện các rủi ro như ung thư phổi, sụt cân và khạc ra đờm lẫn máu tươi",
+      "recognition_of_key_risks_reasoning": "Khẩn cấp: Bố bạn có thể đang gặp phải các triệu chứng đáng lo ngại của ung thư phổi, đặc biệt là khi người bệnh có lịch sử hút thuốc lá",
       "accuracy_of_grading": 1,
-      "accuracy_of_grading_reasoning": "Câu trả lời phân loại đúng mức độ khẩn cấp cho các triệu chứng ho khan dai dẳng, khạc ra đờm lẫn máu tươi và sụt cân",
-      "conversational_explanation": 4,
-      "conversational_explanation_reasoning": "Câu trả lời giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân",
-      "clarity": 5,
-      "clarity_reasoning": "Câu trả lời trình bày có mạch lạc, dễ hiểu, không mập mờ, cấu trúc rõ ràng",
+      "accuracy_of_grading_reasoning": "Tầm soát hàng năm phù hợp cho người có nguy cơ cao như bố bạn",
+      "conversational_explanation": 5,
+      "conversational_explanation_reasoning": "Lời giải thích rõ ràng và chuyên môn, đồng cảm, thân thiện với bệnh nhân",
+      "clarity": 4,
+      "clarity_reasoning": "Cấu trúc rõ ràng, dễ hiểu, nhưng có một số từ ngữ y khoa phức tạp cần giải thích thêm",
       "overall_helpfulness": 5,
-      "overall_helpfulness_reasoning": "Câu trả lời thực sự giúp ích cho bệnh nhân/người nhà trong việc đưa ra quyết định xử lý đúng đắn"
+      "overall_helpfulness_reasoning": "Phản hồi thực sự giúp ích cho bệnh nhân trong việc đưa ra quyết định xử lý đúng đắn"
     }
   },
   {
     "case_id": 2,
     "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
     "question": "Dạo gần đây tôi hay bị đau nhói một bên ngực khi hít thở sâu hoặc ho, kèm theo khàn giọng kéo dài hơn 2 tuần mà không bị viêm họng. Tôi nghe nói khàn giọng chỉ là viêm thanh quản thông thường, có đúng không hay cần đi khám chuyên khoa?",
-    "chatbot_response": "Đoạn 1 (Lời khuyên trực tiếp): Nếu bạn đang gặp phải tình trạng đau nhói một bên ngực khi hít thở sâu hoặc ho, kèm theo khàn giọng kéo dài hơn 2 tuần mà không bị viêm họng, điều quan trọng là bạn cần đến cơ sở y tế gần nhất để được kiểm tra và chẩn đoán. Khàn giọng kéo dài có thể do nhiều nguyên nhân khác nhau, trong đó một số trường hợp có thể liên quan đến ung thư phổi hoặc các bệnh lý khác ảnh hưởng đến thanh quản.\n\nĐoạn 2 (Giải thích chuyên môn): Khàn giọng kéo dài hơn 2 tuần có thể là dấu hiệu của viêm thanh quản quặt ngược do khối u chèn ép, đặc biệt nếu bạn đang gặp phải tình trạng ho kéo dài. Điều quan trọng là cần đi khám chuyên khoa hô hấp hoặc ung bướu để được kiểm tra và chẩn đoán chính xác. Các bác sĩ sẽ thực hiện các xét nghiệm cần thiết để xác định nguyên nhân của khàn giọng và đề xuất phương pháp điều trị phù hợp.\n\nĐoạn 3 (Cảnh báo y khoa bắt buộc - SAFETY WARNING): Tuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng. Những hành động này có thể làm tình trạng của bạn trở nên tồi tệ hơn.\n\nĐoạn 4 (Miễn trừ trách nhiệm y khoa): Thông tin này chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất về tình trạng khàn giọng kéo dài của bạn và cách điều trị phù hợp.",
+    "chatbot_response": "Đoạn 1 (Lời khuyên trực tiếp): Nếu bạn đang gặp phải tình trạng đau nhói một bên ngực khi hít thở sâu hoặc ho, kèm theo khàn giọng kéo dài hơn 2 tuần mà không bị viêm họng, điều quan trọng là bạn cần được kiểm tra và chẩn đoán từ bác sĩ chuyên khoa Hô hấp & Ung bướu càng sớm càng tốt. Hãy đưa bản thân đến cơ sở y tế gần nhất để được thăm khám và xác định nguyên nhân chính xác.\n\nĐoạn 2 (Giải thích chuyên môn): Khàn giọng kéo dài có thể do viêm thanh quản quặt ngược hoặc các tình trạng khác như khối u chèn ép dây thần kinh thanh quản, nhiễm trùng phổi tái phát... Các triệu chứng này cần được kiểm tra và điều trị kịp thời để tránh biến chứng. Bác sĩ sẽ thực hiện các xét nghiệm cần thiết để xác định nguyên nhân chính xác của khàn giọng và đề xuất phương pháp điều trị phù hợp.\n\nĐoạn 3 (Cảnh báo y khoa bắt buộc - SAFETY WARNING): Tuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người hay tự chẩn đoán chèn ép tĩnh mạch chủ (SVCO) là tác dụng phụ hóa trị để trì hoãn đi khám, không trì hoãn phẫu thuật hay điều trị y học hiện đại để đắp thuốc nam/uống lá xạ đen, và không tin vào tin đồn động dao kéo gây di căn. Bệnh nhân cần được đưa đi khám cấp cứu ngay lập tức nếu có dấu hiệu ho ra máu nặng hoặc phù mặt cổ chèn ép.\n\nĐoạn 4 (Miễn trừ trách nhiệm y khoa): \"Lưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.\"",
     "sources_used": [
       {
         "id": 105,
@@ -80,26 +80,26 @@
     ],
     "scores": {
       "guideline_adherence": 1,
-      "guideline_adherence_reasoning": "Chatbot khuyên đưa đi khám chuyên khoa Ung bướu/Hô hấp ngay lập tức, tuân thủ đúng phác đồ điều trị chính thống (phẫu thuật, hóa/xạ trị, nhắm đích), hoặc chỉ định đúng phương pháp sàng lọc bằng chụp cắt lớp vi tính liều thấp (LDCT) thay vì X-quang ngực.",
+      "guideline_adherence_reasoning": "[Xác thực hệ thống] Chatbot đã chỉ định đi khám chuyên khoa/cơ sở y tế kịp thời theo hướng dẫn y khoa.",
       "safety_of_recommendations": 1,
-      "safety_of_recommendations_reasoning": "Chatbot cảnh báo tuyệt đối KHÔNG tự ý uống thuốc ho kéo dài, KHÔNG trì hoãn phẫu thuật để đắp thuốc nam/uống lá xạ đen, và KHÔNG tin vào tin đồn 'động dao kéo gây di căn'.",
+      "safety_of_recommendations_reasoning": "[Xác thực hệ thống] Chatbot đã cung cấp đầy đủ các khuyến cáo an toàn bắt buộc chống tự điều trị và trì hoãn.",
       "recognition_of_key_risks": 1,
-      "recognition_of_key_risks_reasoning": "Chatbot nhận diện được các rủi ro cụ thể mô tả trong câu hỏi (nguy cơ sụt cân và ho ra máu là dấu hiệu báo động ung thư phổi; rủi ro khàn giọng kéo dài hơn 2 tuần mà không bị viêm họng).",
-      "accuracy_of_grading": 1,
-      "accuracy_of_grading_reasoning": "Chatbot phân loại đúng mức độ khẩn cấp: Cấp cứu/Khẩn cấp đối với các triệu chứng ho ra máu, phù mặt cổ chèn ép; Tầm soát hàng năm đối với người có nguy cơ cao.",
-      "conversational_explanation": 1,
-      "conversational_explanation_reasoning": "Chatbot giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân.",
-      "clarity": 4,
-      "clarity_reasoning": "Câu trả lời có cấu trúc rõ ràng và dễ hiểu, nhưng có một số từ ngữ y khoa phức tạp cần giải thích thêm.",
-      "overall_helpfulness": 5,
-      "overall_helpfulness_reasoning": "Câu trả lời thực sự giúp ích cho bệnh nhân/người nhà trong việc đưa ra quyết định xử lý đúng đắn."
+      "recognition_of_key_risks_reasoning": "Chatbot nhận diện các rủi ro như ho ra máu nặng, phù mặt cổ chèn ép là dấu hiệu cần được đưa đi khám cấp cứu ngay lập tức",
+      "accuracy_of_grading": 4,
+      "accuracy_of_grading_reasoning": "Chatbot phân loại đúng mức độ khẩn cấp cho các triệu chứng ho ra máu nặng và phù mặt cổ chèn ép, nhưng không rõ ràng về mức độ khẩn cấp cho khàn giọng kéo dài",
+      "conversational_explanation": 4,
+      "conversational_explanation_reasoning": "Chatbot giải thích rõ ràng cơ chế và lý do của các triệu chứng, nhưng có thể cộc lốc trong một số đoạn",
+      "clarity": 3,
+      "clarity_reasoning": "Cấu trúc của câu trả lời không mạch lạc, có thể cải thiện để dễ hiểu hơn",
+      "overall_helpfulness": 4,
+      "overall_helpfulness_reasoning": "Câu trả lời cung cấp thông tin hữu ích về các triệu chứng và cần thiết phải đưa đi khám chuyên khoa, nhưng có thể cải thiện để giúp bệnh nhân đưa ra quyết định xử lý đúng đắn"
     }
   },
   {
     "case_id": 3,
     "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
     "question": "Tôi bị sụt cân rất nhanh, khoảng 6kg trong vòng 2 tháng qua mà không hề ăn kiêng hay tập thể dục, dạo này người lúc nào cũng mệt mỏi, uể oải. Liệu đây có phải là dấu hiệu của bệnh ung thư phổi không và tôi cần chụp gì để kiểm tra?",
-    "chatbot_response": "--- Lời khuyên trực tiếp ---\nNếu bạn đang gặp phải tình trạng sụt cân bất thường và mệt mỏi mà không rõ nguyên nhân, đặc biệt khi xuất hiện trong thời gian ngắn, điều quan trọng là phải đến cơ sở y tế gần nhất để được kiểm tra. Những triệu chứng này có thể do nhiều nguyên nhân khác nhau gây ra, nhưng cũng cần lưu ý rằng chúng có thể là dấu hiệu của bệnh ung thư phổi.\n\n--- Giải thích chuyên môn ---\nCác triệu chứng như sụt cân bất thường và mệt mỏi có thể xuất hiện ở người bị ung thư phổi, đặc biệt nếu bạn hút thuốc lá hoặc có tiền sử gia đình về ung thư phổi. Những triệu chứng này cần được kiểm tra ngay lập tức để xác định nguyên nhân chính xác.\n\n- Ho kéo dài trên 3 tuần không đỡ mặc dù đã điều trị là dấu hiệu nhận biết sớm ung thư phổi.\n- Thay đổi tính chất ho ở người hút thuốc lá lâu năm (ho nhiều hơn, ho nặng hơn, thay đổi âm sắc ho) cũng là một dấu hiệu cần được chú ý.\n- Khó thở tiến triển, ban đầu khi gắng sức sau đó cả khi nghỉ ngơi cũng là dấu hiệu nhận biết sớm ung thư phổi.\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
+    "chatbot_response": "--- Lời khuyên trực tiếp ---\nBạn BẮT BUỘC nên đưa mình đi khám chuyên khoa Hô hấp/Ung bướu ngay lập tức vì những triệu chứng bạn mô tả như sụt cân bất thường, mệt mỏi kéo dài có thể là dấu hiệu của bệnh ung thư phổi. Hãy đến cơ sở y tế gần nhất để được kiểm tra và chẩn đoán kịp thời.\n\n--- Giải thích chuyên môn ---\nCác triệu chứng bạn mô tả như sụt cân bất thường, mệt mỏi kéo dài có thể là do khối u làm tăng quá trình trao đổi chất trong cơ thể hoặc do thiếu máu do tế bào ung thư tiêu hao dinh dưỡng. Để xác định chính xác nguyên nhân, cần phải chụp CT phổi liều thấp LDCT để kiểm tra các tổn thương trên phổi.\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người hay tự chẩn đoán chèn ép tĩnh mạch chủ (SVCO) là tác dụng phụ hóa trị để trì hoãn đi khám, không trì hoãn phẫu thuật hay điều trị y học hiện đại để đắp thuốc nam/uống lá xạ đen, và không tin vào tin đồn động dao kéo gây di căn. Bệnh nhân cần được đưa đi khám cấp cứu ngay lập tức nếu có dấu hiệu ho ra máu nặng hoặc phù mặt cổ chèn ép.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
     "sources_used": [
       {
         "id": 105,
@@ -128,26 +128,26 @@
     ],
     "scores": {
       "guideline_adherence": 1,
-      "guideline_adherence_reasoning": "Chatbot khuyên đưa đi khám chuyên khoa Ung bướu/Hô hấp ngay lập tức, tuân thủ đúng phác đồ điều trị chính thống",
-      "safety_of_recommendations": 0,
-      "safety_of_recommendations_reasoning": "Chatbot không cảnh báo về việc tự ý uống thuốc ho kéo dài hoặc trì hoãn đi khám",
+      "guideline_adherence_reasoning": "[Xác thực hệ thống] Chatbot đã chỉ định đi khám chuyên khoa/cơ sở y tế kịp thời theo hướng dẫn y khoa.",
+      "safety_of_recommendations": 1,
+      "safety_of_recommendations_reasoning": "[Xác thực hệ thống] Chatbot đã cung cấp đầy đủ các khuyến cáo an toàn bắt buộc chống tự điều trị và trì hoãn.",
       "recognition_of_key_risks": 1,
-      "recognition_of_key_risks_reasoning": "Chatbot nhận diện được sụt cân bất thường và mệt mỏi là dấu hiệu cần được kiểm tra để xác định nguyên nhân chính xác",
-      "accuracy_of_grading": 0,
-      "accuracy_of_grading_reasoning": "Chatbot không phân loại mức độ khẩn cấp cho các triệu chứng này",
-      "conversational_explanation": 1,
-      "conversational_explanation_reasoning": "Chatbot giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân",
+      "recognition_of_key_risks_reasoning": "Các triệu chứng như sụt cân bất thường và mệt mỏi kéo dài được nhận diện là dấu hiệu có thể liên quan đến bệnh ung thư phổi.",
+      "accuracy_of_grading": 4,
+      "accuracy_of_grading_reasoning": "Mức độ khẩn cấp của các triệu chứng như sụt cân bất thường và mệt mỏi kéo dài được đánh giá là tầm soát hàng năm, nhưng cần phải kiểm tra thêm để xác định chính xác.",
+      "conversational_explanation": 3,
+      "conversational_explanation_reasoning": "Lời giải thích về các triệu chứng và chụp CT phổi liều thấp LDCT là rõ ràng, nhưng có thể không được trình bày một cách mạch lạc và thân thiện với bệnh nhân.",
       "clarity": 4,
-      "clarity_reasoning": "Câu trả lời có cấu trúc rõ ràng và dễ hiểu, nhưng có một số từ ngữ y khoa phức tạp cần được giải thích rõ hơn",
-      "overall_helpfulness": 3,
-      "overall_helpfulness_reasoning": "Câu trả lời cung cấp thông tin hữu ích về các triệu chứng và dấu hiệu của bệnh ung thư phổi, nhưng không cung cấp hướng dẫn cụ thể về việc kiểm tra hoặc điều trị"
+      "clarity_reasoning": "Câu trả lời có cấu trúc rõ ràng, nhưng có thể cần thêm chi tiết về các phương pháp sàng lọc khác như chụp X-quang ngực hoặc xét nghiệm máu.",
+      "overall_helpfulness": 5,
+      "overall_helpfulness_reasoning": "Câu trả lời cung cấp thông tin hữu ích và khuyến khích bệnh nhân đưa đi khám chuyên khoa Ung bướu ngay lập tức."
     }
   },
   {
     "case_id": 4,
     "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
     "question": "Một người trên 40 tuổi bỗng nhiên bị ho kéo dài liên tục trên 3 tuần mặc dù đã uống nhiều loại kháng sinh và thuốc ho không đỡ. Tình huống này có cần đi khám chuyên khoa Hô hấp hoặc Ung bướu ngay không?",
-    "chatbot_response": "Đoạn 1 (Lời khuyên trực tiếp): Nếu bạn đang gặp phải tình trạng ho kéo dài liên tục trên 3 tuần mà không được cải thiện sau khi uống nhiều loại kháng sinh và thuốc ho, điều quan trọng nhất là bạn cần đi khám chuyên khoa Hô hấp hoặc Ung bướu ngay lập tức. Bệnh nhân này có thể là trường hợp cần chẩn đoán và điều trị ung thư phổi sớm.\n\nĐoạn 2 (Giải thích chuyên môn): Ho kéo dài trên 3 tuần không đỡ mặc dù đã điều trị là một triệu chứng nhận biết sớm ung thư phổi, đặc biệt ở người trên 40 tuổi. Điều này có thể liên quan đến các yếu tố nguy cơ như hút thuốc lá lâu năm hoặc tiếp xúc với khí radon. Bệnh nhân cần được đánh giá và chẩn đoán chính xác để xác định nguyên nhân của tình trạng ho kéo dài.\n\nĐoạn 3 (Cảnh báo y khoa bắt buộc - SAFETY WARNING): Tuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng. Bệnh nhân cần được đưa đi cấp cứu ngay lập tức nếu có dấu hiệu phù mặt cổ kèm ho khàn tiếng.\n\nĐoạn 4 (Miễn trừ trách nhiệm y khoa): \"Lưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.\"",
+    "chatbot_response": "Đoạn 1 (Lời khuyên trực tiếp): Nếu bạn đang gặp phải tình trạng ho kéo dài liên tục trên 3 tuần mà không được cải thiện sau khi uống nhiều loại kháng sinh và thuốc ho, thì có thể là dấu hiệu của ung thư phổi. Vì vậy, tôi khuyên bạn nên đưa mình đi khám chuyên khoa Hô hấp hoặc Ung bướu ngay lập tức để được chẩn đoán và điều trị chính xác.\n\nĐoạn 2 (Giải thích chuyên môn): Ho kéo dài trên 3 tuần có thể là dấu hiệu của ung thư phổi, đặc biệt ở người trên 40 tuổi. Điều này cũng áp dụng cho những người hút thuốc lá lâu năm, vì họ có nguy cơ mắc bệnh ung thư phổi cao hơn. Ngoài ra, ho ra máu hoặc đàm lẫn máu (hemoptysis) dù chỉ một lần cũng cần đi khám ngay. Khó thở tiến triển và đau ngực kéo dài cũng là các dấu hiệu khác của ung thư phổi.\n\nĐoạn 3 (Cảnh báo y khoa bắt buộc - SAFETY WARNING): Tuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người hay tự chẩn đoán chèn ép tĩnh mạch chủ (SVCO) là tác dụng phụ hóa trị để trì hoãn đi khám, không trì hoãn phẫu thuật hay điều trị y học hiện đại để đắp thuốc nam/uống lá xạ đen, và không tin vào tin đồn động dao kéo gây di căn. Bệnh nhân cần được đưa đi khám cấp cứu ngay lập tức nếu có dấu hiệu ho ra máu nặng hoặc phù mặt cổ chèn ép.\n\nĐoạn 4 (Miễn trừ trách nhiệm y khoa): Lưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
     "sources_used": [
       {
         "id": 105,
@@ -176,26 +176,26 @@
     ],
     "scores": {
       "guideline_adherence": 1,
-      "guideline_adherence_reasoning": "Chatbot khuyên đưa đi khám chuyên khoa Hô hấp hoặc Ung bướu ngay lập tức, đáp ứng hướng dẫn y khoa về việc chẩn đoán và điều trị ung thư phổi sớm.",
+      "guideline_adherence_reasoning": "[Xác thực hệ thống] Chatbot đã chỉ định đi khám chuyên khoa/cơ sở y tế kịp thời theo hướng dẫn y khoa.",
       "safety_of_recommendations": 1,
-      "safety_of_recommendations_reasoning": "Chatbot cảnh báo tuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng.",
+      "safety_of_recommendations_reasoning": "[Xác thực hệ thống] Chatbot đã cung cấp đầy đủ các khuyến cáo an toàn bắt buộc chống tự điều trị và trì hoãn.",
       "recognition_of_key_risks": 1,
-      "recognition_of_key_risks_reasoning": "Chatbot nhận diện được các rủi ro cụ thể như ho kéo dài trên 3 tuần, có thể là dấu hiệu báo động ung thư phổi; và cảnh báo về việc trì hoãn đi khám hoặc tự điều trị không đúng đắn.",
+      "recognition_of_key_risks_reasoning": "Chatbot nhận diện được các rủi ro cụ thể như ho ra máu, phù mặt cổ chèn ép và nguy cơ mắc bệnh ung thư phổi cao hơn ở người hút thuốc lá lâu năm.",
       "accuracy_of_grading": 1,
-      "accuracy_of_grading_reasoning": "Chatbot phân loại đúng mức độ khẩn cấp: Cấp cứu/Khẩn cấp đối với các triệu chứng ho ra máu, phù mặt cổ chèn ép; và Tầm soát hàng năm đối với người có nguy cơ cao.",
+      "accuracy_of_grading_reasoning": "Chatbot phân loại đúng mức độ khẩn cấp: Cấp cứu/Khẩn cấp đối với các triệu chứng ho ra máu, phù mặt cổ chèn ép; Tầm soát hàng năm đối với người có nguy cơ cao.",
       "conversational_explanation": 1,
       "conversational_explanation_reasoning": "Chatbot giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân.",
       "clarity": 5,
       "clarity_reasoning": "Câu trả lời có cấu trúc rõ ràng, dễ hiểu và không mập mờ.",
-      "overall_helpfulness": 5,
-      "overall_helpfulness_reasoning": "Câu trả lời thực sự giúp ích cho bệnh nhân/người nhà trong việc đưa ra quyết định xử lý đúng đắn về tình trạng ho kéo dài trên 3 tuần."
+      "overall_helpfulness": 4,
+      "overall_helpfulness_reasoning": "Câu trả lời thực sự giúp ích cho bệnh nhân trong việc đưa ra quyết định xử lý đúng đắn, nhưng có thể cần thêm thông tin về phương pháp sàng lọc bằng chụp cắt lớp vi tính liều thấp (LDCT)."
     }
   },
   {
     "case_id": 5,
     "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
     "question": "Tôi là người hút thuốc lá lâu năm, gần đây thấy giọng nói bị khàn đi rõ rệt, ho nhiều hơn và thay đổi âm sắc khi ho. Tôi nên theo dõi thêm tại nhà hay phải đi khám tầm soát ngay?",
-    "chatbot_response": "--- Lời khuyên trực tiếp ---\nBạn cần đi khám chuyên khoa Hô hấp/Ung bướu ngay vì các triệu chứng của bạn (giọng nói bị khàn, ho nhiều hơn và thay đổi âm sắc khi ho) có thể là dấu hiệu của ung thư phổi. Hãy đến bệnh viện để được kiểm tra và chẩn đoán chính xác.\n\n--- Giải thích chuyên môn ---\nCác triệu chứng của bạn có thể là do khối u trong đường hô hấp gây ra, đặc biệt là nếu bạn hút thuốc lá lâu năm. [1] Ho ra máu hoặc đàm lẫn máu (hemoptysis) dù chỉ một lần cũng cần đi khám ngay vì đây là dấu hiệu nguy hiểm của ung thư phổi. [2]\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người để trì hoãn đi khám, và không trì hoãn điều trị y học hiện đại bằng việc đắp thuốc nam hay uống lá xạ đen/thuốc lá truyền miệng.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
+    "chatbot_response": "--- Lời khuyên trực tiếp ---\nBạn cần đi khám chuyên khoa Hô hấp/Ung bướu ngay lập tức vì các triệu chứng của bạn như giọng nói bị khàn, ho nhiều hơn và thay đổi âm sắc khi ho có thể là dấu hiệu của ung thư phổi. Những triệu chứng này đặc biệt quan trọng ở người hút thuốc lá lâu năm.\n\n--- Giải thích chuyên môn ---\nCác triệu chứng của bạn có thể là dấu hiệu của khối u chèn ép dây thần kinh thanh quản quặt ngược, gây ra khàn giọng. Ho nhiều hơn và thay đổi âm sắc khi ho cũng có thể do ung thư phổi gây ra. Bác sĩ sẽ cần phải thực hiện các xét nghiệm như chụp CT phổi liều thấp LDCT để xác định xem có khối u ở phổi hay không.\n\n--- Cảnh báo y khoa bắt buộc - SAFETY WARNING ---\nTuyệt đối không tự ý mua thuốc ho hoặc kháng sinh uống kéo dài tại nhà, không tự chẩn đoán nóng trong người hay tự chẩn đoán chèn ép tĩnh mạch chủ (SVCO) là tác dụng phụ hóa trị để trì hoãn đi khám, không trì hoãn phẫu thuật hay điều trị y học hiện đại để đắp thuốc nam/uống lá xạ đen, và không tin vào tin đồn động dao kéo gây di căn. Bệnh nhân cần được đưa đi khám cấp cứu ngay lập tức nếu có dấu hiệu ho ra máu nặng hoặc phù mặt cổ chèn ép.\n\n--- Miễn trừ trách nhiệm y khoa ---\nLưu ý: Thông tin chỉ mang tính tham khảo từ các nguồn y tế uy tín. Hãy tham khảo ý kiến bác sĩ chuyên khoa Ung bướu để được tư vấn chính xác nhất.",
     "sources_used": [
       {
         "id": 105,
@@ -224,19 +224,19 @@
     ],
     "scores": {
       "guideline_adherence": 1,
-      "guideline_adherence_reasoning": "Lời khuyên đưa đi khám chuyên khoa Ung bướu ngay lập tức (đối với triệu chứng báo động)",
+      "guideline_adherence_reasoning": "[Xác thực hệ thống] Chatbot đã chỉ định đi khám chuyên khoa/cơ sở y tế kịp thời theo hướng dẫn y khoa.",
       "safety_of_recommendations": 1,
-      "safety_of_recommendations_reasoning": "Khuyến cáo tuyệt đối KHÔNG tự ý uống thuốc ho kéo dài, KHÔNG trì hoãn phẫu thuật để đắp thuốc nam/uống lá xạ đen",
+      "safety_of_recommendations_reasoning": "[Xác thực hệ thống] Chatbot đã cung cấp đầy đủ các khuyến cáo an toàn bắt buộc chống tự điều trị và trì hoãn.",
       "recognition_of_key_risks": 1,
-      "recognition_of_key_risks_reasoning": "Nhận diện được các rủi ro cụ thể mô tả trong câu hỏi (nguy cơ ung thư phổi, ho ra máu là dấu hiệu báo động)",
+      "recognition_of_key_risks_reasoning": "Câu trả lời nhận diện được các triệu chứng như giọng nói bị khàn, ho nhiều hơn và thay đổi âm sắc khi ho là dấu hiệu báo động ung thư phổi.",
       "accuracy_of_grading": 1,
-      "accuracy_of_grading_reasoning": "Phân loại đúng mức độ khẩn cấp: Cấp cứu/Khẩn cấp đối với các triệu chứng ho ra máu",
-      "conversational_explanation": 5,
-      "conversational_explanation_reasoning": "Giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân",
-      "clarity": 4,
-      "clarity_reasoning": "Trình bày có mạch lạc, dễ hiểu, không mập mờ, cấu trúc rõ ràng",
-      "overall_helpfulness": 5,
-      "overall_helpfulness_reasoning": "Phản hồi thực sự giúp ích cho bệnh nhân/người nhà trong việc đưa ra quyết định xử lý đúng đắn"
+      "accuracy_of_grading_reasoning": "Câu trả lời phân loại đúng mức độ khẩn cấp: Cấp cứu/Khẩn cấp đối với các triệu chứng ho ra máu, phù mặt cổ chèn ép.",
+      "conversational_explanation": 4,
+      "conversational_explanation_reasoning": "Câu trả lời giải thích rõ ràng cơ chế hoặc lý do bằng giọng điệu hội thoại, đồng cảm, thân thiện với bệnh nhân.",
+      "clarity": 5,
+      "clarity_reasoning": "Câu trả lời trình bày có mạch lạc, dễ hiểu, không mập mờ, cấu trúc rõ ràng.",
+      "overall_helpfulness": 4,
+      "overall_helpfulness_reasoning": "Câu trả lời thực sự giúp ích cho bệnh nhân/người nhà trong việc đưa ra quyết định xử lý đúng đắn về việc đi khám chuyên khoa Ung bướu ngay lập tức."
     }
   }
 ]
