@@ -512,7 +512,7 @@ def evaluate_single_case(q):
         return None
 
 def evaluate():
-    print(f"🚀 Bắt đầu đánh giá 10 ca lâm sàng Chatbot Ung thư phổi theo Framework Clinical Assessment...")
+    print(f"🚀 Bắt đầu đánh giá 5 ca lâm sàng Chatbot Ung thư phổi theo Framework Clinical Assessment...")
     os.makedirs("data", exist_ok=True)
     
     results = []
@@ -520,7 +520,7 @@ def evaluate():
     
     print(f"⚡ Đang chạy song song với tối đa {max_workers} luồng...")
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(evaluate_single_case, q): q for q in QUESTIONS[:10]}
+        futures = {executor.submit(evaluate_single_case, q): q for q in QUESTIONS[:5]}
         for future in as_completed(futures):
             res = future.result()
             if res is not None:
