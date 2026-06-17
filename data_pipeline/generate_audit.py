@@ -1,6 +1,12 @@
 import json
 import os
 from datetime import datetime
+import sys
+import io
+
+# Force UTF-8 encoding for stdout and stderr to prevent UnicodeEncodeError on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 def generate_audit():
     kb_path = "../data/knowledge_base.json"

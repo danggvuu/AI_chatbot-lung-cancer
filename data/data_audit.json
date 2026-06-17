@@ -2,33 +2,55 @@
     {
         "source_name": "Bệnh viện Tâm Anh",
         "url": "https://tamanhhospital.vn/ung-thu-phoi/",
+        "chunks_count": 31,
         "status": "Active",
         "version": "Mới nhất",
-        "last_audited": "2026-06-16",
-        "notes": "Tài liệu đang có hiệu lực."
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
     },
     {
         "source_name": "Vinmec",
-        "url": "https://www.vinmec.com/vie/bai-viet/ung-thu-phoi-nguyen-nhan-trieu-chung-chan-doan-va-dieu-tri-vi",
+        "url": "https://www.vinmec.com/vie/bai-viet/ung-thu-phoi-co-chua-duoc-khong-vi",
+        "chunks_count": 9,
         "status": "Active",
         "version": "Mới nhất",
-        "last_audited": "2026-06-16",
-        "notes": "Tài liệu đang có hiệu lực."
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
     },
     {
-        "source_name": "Bệnh viện K",
-        "url": "https://benhvienk.vn/ung-thu-phoi-nguyen-nhan-trieu-chung-va-phuong-phap-dieu-tri-nd94791.html",
+        "source_name": "Nhà thuốc Long Châu",
+        "url": "https://nhathuoclongchau.com.vn/benh/ung-thu-phoi-428.html",
+        "chunks_count": 16,
         "status": "Active",
         "version": "Mới nhất",
-        "last_audited": "2026-06-16",
-        "notes": "Viện Ung bướu Quốc gia - Tài liệu đang có hiệu lực."
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
+    },
+    {
+        "source_name": "Bệnh viện 108",
+        "url": "https://www.benhvien108.vn/ung-thu-phoi-%E2%80%93-nhung-dieu-can-biet.htm",
+        "chunks_count": 1,
+        "status": "Active",
+        "version": "Mới nhất",
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
+    },
+    {
+        "source_name": "Bệnh viện Hồng Ngọc",
+        "url": "https://hongngochospital.vn/vi/dau-hieu-ung-thu-phoi#cac-dau-hieu-ung-thu-phoi",
+        "chunks_count": 25,
+        "status": "Active",
+        "version": "Mới nhất",
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
     },
     {
         "source_name": "Bộ Y tế Việt Nam",
-        "url": "https://kcb.vn",
+        "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+        "chunks_count": 6,
         "status": "Active",
-        "version": "Hướng dẫn chẩn đoán và điều trị ung thư phổi",
-        "last_audited": "2026-06-16",
-        "notes": "Hướng dẫn lâm sàng chính thức."
+        "version": "Mới nhất",
+        "last_audited": "2026-06-17",
+        "notes": "Phác đồ/Tài liệu đang có hiệu lực. Hệ thống chỉ RAG trên tài liệu Active."
     }
 ]
