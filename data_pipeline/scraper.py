@@ -3,12 +3,83 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+import sys
+import io
+import urllib3
+
+# Disable SSL verification warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Force UTF-8 encoding for stdout and stderr to prevent UnicodeEncodeError on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 
 def clean_text(text):
     """Remove excessive whitespaces and clean text."""
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
+
+
+def is_promotional_or_noise(text):
+    """Detect if the text paragraph contains promotional, commercial, contact info, or noise."""
+    text_lower = text.lower()
+    
+    # List of advertising/promotional/contact/junk/navigation phrases
+    promo_phrases = [
+        'hotline', 'liên hệ hotline', 'liên hệ trực tiếp', 'số điện thoại:', 'sđt:',
+        'đặt lịch khám', 'đặt lịch hẹn', 'đặt lịch trực tuyến', 'đặt hẹn khám', 
+        'đăng ký khám', 'đặt lịch tại', 'đăng ký trực tuyến', 'đăng ký ngay',
+        'tư vấn miễn phí', 'gọi ngay', 'gọi hotline', 'tải ứng dụng', 'tải app',
+        'mua ngay', 'đặt mua', 'giỏ hàng', 'giá bán:', 'giá tham khảo', 
+        'khuyến mãi', 'ưu đãi', 'siêu ưu đãi', 'gói khám', 'dịch vụ khám',
+        'fanpage:', 'website:', 'bản quyền thuộc', 'chia sẻ:', 'theo dõi chúng tôi',
+        'gửi tin nhắn', 'tổng đài:', 'chăm sóc khách hàng', 'hệ thống bệnh viện',
+        'phòng khám đa khoa', 'bệnh viện đa khoa', 'địa chỉ:', 'đ/c cũ:',
+        '108 hoàng như tiếp', '2b phổ quang', '316c phạm hùng', '25 nguyễn hữu thọ', '265 cầu giấy',
+        'nhà thuốc fpt long châu', 'hệ thống nhà thuốc', 'nhà thuốc long châu',
+        'phát hành bởi', 'bản quyền thuộc', 'chính sách bảo mật', 'điều khoản sử dụng',
+        'chuyên khoa:', 'nhận tư vấn', 'bài viết liên quan', 'bình luận', 'đăng ký',
+        # Menu / Navigation menu noise
+        'sơ đồ tổ chức', 'thông tin tuyển dụng', 'chuyên gia – bác sĩ', 'danh mục kỹ thuật', 
+        'tiện nghi giải thưởng', 'đào tạo liên hệ', 'hoạt động xã hội', 'sự kiện cộng đồng',
+        'tầm nhìn – sứ mệnh', 'dịch vụ đặc biệt'
+    ]
+    
+    for phrase in promo_phrases:
+        if phrase in text_lower:
+            return True
+            
+    # Also skip address listings containing common ward/district abbreviations in address strings
+    # to avoid parsing hospital location listings as lung cancer information
+    address_indicators = ['p.bồ đề', 'q.long biên', 'tp. hà nội', 'tp.hcm', 'q.tân bình', 'q.7', 'q.8', 'quận 1', 'quận 3', 'quận bình thạnh']
+    for ind in address_indicators:
+        if ind in text_lower:
+            return True
+            
+    return False
+
+
+def is_navigation_or_boilerplate(element):
+    """Check if the BeautifulSoup element belongs to navigation, headers, footers, or breadcrumbs."""
+    parent = element.parent
+    while parent:
+        # Check tag name
+        if parent.name in ['nav', 'header', 'footer']:
+            return True
+        # Check class and id attributes
+        attrs = []
+        if parent.get('class'):
+            attrs.extend(parent.get('class'))
+        if parent.get('id'):
+            attrs.append(parent.get('id'))
+            
+        for attr in attrs:
+            attr_lower = str(attr).lower()
+            if any(k in attr_lower for k in ['menu', 'nav', 'header', 'footer', 'breadcrumb', 'sidebar', 'aside', 'widget', 'modal', 'popup', 'dialog', 'overlay', 'cookie', 'banner', 'feedback', 'approver']):
+                return True
+        parent = parent.parent
+    return False
 
 
 def scrape_url(url, source_name):
@@ -18,7 +89,7 @@ def scrape_url(url, source_name):
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
     try:
-        response = requests.get(url, headers=headers, timeout=15)
+        response = requests.get(url, headers=headers, timeout=15, verify=False)
         if response.status_code != 200:
             print(f"  ❌ Failed to fetch {url}, status code: {response.status_code}")
             return []
@@ -35,10 +106,12 @@ def scrape_url(url, source_name):
 
         # Try to find the main content container
         content_div = None
-        for selector in ['.detail-content', '.post-content', 'article', '.entry-content',
-                         '.news-detail', '.detail-content-wrapper', '#main-content', '.content']:
+        for selector in ['[class*="posts-detail-container"]', '[class*="posts-detail"]', '.content_detail_sick', '.detail_sick', '.detail-content', '.post-content', 'article', 
+                         '.entry-content', '.news-detail', '.detail-content-wrapper', '#main-content', '.content']:
             found = soup.select_one(selector)
             if found:
+                if is_navigation_or_boilerplate(found):
+                    continue
                 content_div = found
                 break
 
@@ -49,12 +122,9 @@ def scrape_url(url, source_name):
         current_section = "Tổng quan"
         current_content = []
 
-        # Skip words to filter out generic website components
-        skip_words = ['chia sẻ:', 'bản quyền', 'hotline', 'liên hệ', 'bài viết liên quan',
-                      'theo dõi chúng tôi', 'đăng ký', 'bác sĩ tư vấn', 'bình luận',
-                      'gửi tin nhắn', 'đặt lịch', 'tư vấn miễn phí', 'gọi ngay']
-
         for element in content_div.find_all(['h2', 'h3', 'p', 'li']):
+            if is_navigation_or_boilerplate(element):
+                continue
             if element.name in ['h2', 'h3']:
                 # Save previous section if it has content
                 if current_content:
@@ -71,7 +141,7 @@ def scrape_url(url, source_name):
                 current_content = []
             elif element.name in ['p', 'li']:
                 txt = clean_text(element.text)
-                if txt and not any(skip in txt.lower() for skip in skip_words):
+                if txt and not is_promotional_or_noise(txt):
                     current_content.append(txt)
 
         # Save last section
@@ -103,6 +173,17 @@ def main():
         {"url": "https://www.vinmec.com/vie/bai-viet/sang-loc-ung-thu-phoi-khi-nao-can-thuc-hien-vi", "source": "Vinmec"},
         {"url": "https://benhvienk.vn/ung-thu-phoi-nguyen-nhan-trieu-chung-va-phuong-phap-dieu-tri-nd94791.html", "source": "Bệnh viện K"},
         {"url": "https://tamanhhospital.vn/dieu-tri-ung-thu-phoi/", "source": "Bệnh viện Tâm Anh"},
+        {"url": "https://benhvienk.vn/phuong-phap-dieu-tri-ung-thu-phoi-thay-doi-tu-nam-2025-nd94792.html", "source": "Bệnh viện K"},
+        {"url": "https://www.vinmec.com/vie/benh/ung-thu-phoi-3039", "source": "Vinmec"},
+        {"url": "https://nhathuoclongchau.com.vn/benh/ung-thu-phoi-428.html", "source": "Nhà thuốc Long Châu"},
+        {"url": "https://medlatec.vn/benh/ung-thu-phoi", "source": "Medlatec"},
+        {"url": "https://medlatec.vn/bai-viet/phuong-phap-chan-oan-ung-thu-phoi-tieu-chuan-quoc-te-p4056-54101.html", "source": "Medlatec"},
+        {"url": "https://medlatec.vn/bai-viet/nguyen-nhan-va-dieu-tri-ung-thu-phoi-p5164-39918.html", "source": "Medlatec"},
+        {"url": "https://www.benhvien108.vn/ung-thu-phoi-%E2%80%93-nhung-dieu-can-biet.htm", "source": "Bệnh viện 108"},
+        {"url": "https://www.benhvien108.vn/dieu-tri-ung-thu-phoi-p3246-36137.html", "source": "Bệnh viện 108"},
+        {"url": "https://hongngochospital.vn/vi/dau-hieu-ung-thu-phoi#cac-dau-hieu-ung-thu-phoi", "source": "Bệnh viện Hồng Ngọc"},
+        {"url": "https://hongngochospital.vn/vi/chan-doan-ung-thu-phoi#cac-phuong-phap-chan-doan-ung-thu-phoi", "source": "Bệnh viện Hồng Ngọc"},
+    
     ]
 
     all_chunks = []
