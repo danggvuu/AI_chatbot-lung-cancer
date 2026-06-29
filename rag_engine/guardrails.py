@@ -5,21 +5,9 @@ class Guardrails:
         self.min_retrieval_score = self.settings.get("guardrails", {}).get("min_retrieval_score", 1.0)
         
     def should_abstain(self, retrieved_docs: list[dict]) -> bool:
-        """Kiểm tra xem hệ thống có nên từ chối trả lời do thiếu thông tin không."""
-        if not retrieved_docs:
-            return True
-            
-        # Kiểm tra điểm số của chunk tốt nhất (nếu có rerank)
-        best_doc = retrieved_docs[0]
-        score = best_doc.get("rerank_score") or best_doc.get("rrf_score", 0)
-        
-        # Vì reranker (ms-marco) score có thể âm, rrf score thì dương nhỏ
-        # Để đơn giản, ta chỉ abstain nếu KHÔNG có doc nào (đã check ở trên).
-        # Nếu áp dụng reranker, ta có thể set threshold riêng.
-        if "rerank_score" in best_doc:
-            if score < -5.0: # Threshold cho cross-encoder
-                return True
-                
+        """Kiểm tra xem hệ thống có nên từ chối trả lời do thiếu thông tin không.
+        Đã vô hiệu hóa để LLM tự quyết định và vẫn có thể đưa ra cảnh báo cấp cứu.
+        """
         return False
         
     def get_abstention_message(self) -> str:

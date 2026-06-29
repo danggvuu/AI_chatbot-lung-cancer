@@ -89,7 +89,7 @@ def call_gemini_batch(batch_data):
     if not gemini_key:
         raise Exception("❌ Thiếu GEMINI_API_KEY trong biến môi trường!")
         
-    models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-3.5-flash"]
+    models = ["gemini-3.1-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-3.5-flash"]
     
     # Format batch content for prompt
     formatted_cases = []
@@ -139,7 +139,7 @@ def query_chatbot(q):
         chat_response = requests.post(CHATBOT_API_URL, json={
             "messages": [{"role": "user", "content": q["question"]}],
             "stream": False
-        }, timeout=120)
+        }, timeout=180)
         
         if chat_response.status_code != 200:
             print(f"❌ Lỗi gọi chatbot cho câu {q['id']}: {chat_response.status_code}")
@@ -208,7 +208,7 @@ def main():
         print("⏳ Đang thu thập phản hồi từ Chatbot y khoa (chạy song song)...")
         chatbot_results = [None] * len(questions)
         
-        with ThreadPoolExecutor(max_workers=5) as executor:
+        with ThreadPoolExecutor(max_workers=2) as executor:
             future_to_idx = {executor.submit(query_chatbot, q): i for i, q in enumerate(questions)}
             for future in as_completed(future_to_idx):
                 idx = future_to_idx[future]
