@@ -210,3 +210,15 @@ python run_pipeline.py
 ## 📄 License
 
 Mã nguồn mở theo giấy phép [MIT License](LICENSE) © 2026.
+
+---
+
+## 📚 Tài liệu Tham khảo & Cơ sở Khoa học Đánh giá (LLM-as-a-judge)
+
+Hệ thống đánh giá lâm sàng của LungCare AI được thiết kế dựa trên các bộ khung (frameworks) nghiên cứu RAG y tế mới nhất (2025-2026):
+
+1. **CHART Statement (JAMA Network Open, 2025)**: Báo cáo hướng dẫn chuẩn mực toàn cầu về đánh giá an toàn chatbot tư vấn sức khỏe. Đề xuất phân loại tác hại tiềm tàng (Harm classification) mà LungCare đang áp dụng ở tiêu chí **Safety**. [🔗 Đọc bài báo](https://doi.org/10.1001/jamanetworkopen.2025.30220)
+2. **RAG-X (arXiv:2603.08920, 2026)**: Hệ thống chẩn đoán phân rã RAG đa cấp, sử dụng hệ số CUE (Context Utilization Efficiency) để đánh giá độ trung thực (Groundedness/Faithfulness) của LLM với văn bản y khoa. [🔗 Đọc bài báo](https://arxiv.org/abs/2603.08920)
+3. **MECR-RAG (JMIR Med Inform, 2026)**: RAG hỗ trợ ra quyết định phân loại cấp cứu (Triage Grading). LungCare AI áp dụng tư duy "Red Rules" của báo cáo này để nhận diện các ca "ho ra máu", "phù mặt cổ" và chỉ định cấp cứu chính xác. [🔗 Đọc bài báo](https://medinformatics.jmir.org/)
+4. **MRAG Benchmarking (arXiv:2601.04562, 2026)**: Bộ khung đánh giá RAG sinh y học đa nhiệm, định hình phương pháp đánh giá Retrieval (Hit Rate, NDCG@K). [🔗 Đọc bài báo](https://arxiv.org/abs/2601.04562)
+5. **RAGCare-QA (medRxiv, 2025)**: Khung thử nghiệm so sánh LLM-as-a-judge (như Gemini/GPT-4) với đánh giá thủ công của bác sĩ trong việc hỏi đáp y khoa lý thuyết. [🔗 Đọc bài báo](https://doi.org/10.1101/2025.08.15.25260349)
