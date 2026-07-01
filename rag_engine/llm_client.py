@@ -7,7 +7,7 @@ class OllamaClient:
         self.base_url = base_url
         self.model = model
         
-    async def generate_stream(self, messages: list[dict], temperature: float = 0.1) -> AsyncGenerator[str, None]:
+    async def generate_stream(self, messages: list[dict], temperature: float = 0.1, **kwargs) -> AsyncGenerator[str, None]:
         """Gửi request tới Ollama API theo dạng stream."""
         url = f"{self.base_url}/api/chat"
         payload = {
@@ -15,7 +15,9 @@ class OllamaClient:
             "messages": messages,
             "stream": True,
             "options": {
-                "temperature": temperature
+                "temperature": temperature,
+                "num_predict": kwargs.get("num_predict", 500),
+                "num_ctx": kwargs.get("num_ctx", 4096)
             }
         }
         
@@ -35,7 +37,7 @@ class OllamaClient:
                         except json.JSONDecodeError:
                             pass
                             
-    async def generate(self, messages: list[dict], temperature: float = 0.1) -> str:
+    async def generate(self, messages: list[dict], temperature: float = 0.1, **kwargs) -> str:
         """Gửi request đồng bộ tới Ollama API (không stream)."""
         url = f"{self.base_url}/api/chat"
         payload = {
@@ -43,7 +45,9 @@ class OllamaClient:
             "messages": messages,
             "stream": False,
             "options": {
-                "temperature": temperature
+                "temperature": temperature,
+                "num_predict": kwargs.get("num_predict", 500),
+                "num_ctx": kwargs.get("num_ctx", 4096)
             }
         }
         

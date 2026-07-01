@@ -3,6 +3,7 @@ import json
 import re
 import requests
 import socket
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
 
@@ -89,13 +90,23 @@ def call_gemini_batch(batch_data):
     if not gemini_key:
         raise Exception("❌ Thiếu GEMINI_API_KEY trong biến môi trường!")
         
-    models = ["gemini-3.1-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-3.5-flash"]
+    # Danh sách dự phòng các model (quay vòng nếu bị giới hạn rate limit hoặc model không tồn tại)
+    models = [
+        "gemini-3.1-flash",
+        "gemini-3.1-pro", 
+        "gemini-3.5-flash",
+        "gemini-2.5-pro",
+        "gemini-2.5-flash",
+        "gemini-2.0-flash"
+    ]
     
     # Format batch content for prompt
     formatted_cases = []
-    for item in batch_data:
+    for i, item in enumerate(batch_data):
+        unique_id = f"{item['case_id']}_{item.get('config', 'default')}_{i}"
+        item["_unique_id"] = unique_id # Tạm lưu để khớp
         formatted_cases.append(
-            f"--- CASE ID: {item['case_id']} ---\n"
+            f"--- CASE ID: {unique_id} ---\n"
             f"CÂU HỎI: {item['question']}\n"
             f"CÂU TRẢ LỜI CỦA CHATBOT:\n{item['chatbot_response']}\n"
         )
@@ -136,10 +147,12 @@ def call_gemini_batch(batch_data):
 
 def query_chatbot(q):
     try:
+        start_time = time.time()
         chat_response = requests.post(CHATBOT_API_URL, json={
             "messages": [{"role": "user", "content": q["question"]}],
             "stream": False
         }, timeout=180)
+        end_time = time.time()
         
         if chat_response.status_code != 200:
             print(f"❌ Lỗi gọi chatbot cho câu {q['id']}: {chat_response.status_code}")
@@ -151,7 +164,8 @@ def query_chatbot(q):
             "category": q["category"],
             "question": q["question"],
             "chatbot_response": chat_data["message"],
-            "sources_used": chat_data.get("sources", [])
+            "sources_used": chat_data.get("sources", []),
+            "response_time_ms": int((end_time - start_time) * 1000)
         }
     except Exception as e:
         print(f"❌ Exception khi gọi chatbot câu {q['id']}: {e}")
@@ -187,10 +201,28 @@ def main():
     
     # Cache file path for chatbot responses
     cache_file = "data/chatbot_responses_cache.json"
+    baseline_file = "data/baseline_results.json"
     valid_results = []
     
-    # Try loading chatbot responses from cache
-    if os.path.exists(cache_file):
+    # Ưu tiên đọc từ file baseline 200 câu nếu có
+    if os.path.exists(baseline_file):
+        try:
+            with open(baseline_file, "r", encoding="utf-8") as f:
+                baseline_data = json.load(f)
+            
+            # Flatten baseline data from 4 configs into a single list
+            for config_name, cases in baseline_data.items():
+                for case in cases:
+                    case["config"] = config_name
+                    valid_results.append(case)
+            
+            print(f"✅ Đã tìm thấy file Baseline ({len(valid_results)} câu từ {len(baseline_data)} cấu hình). Sẽ chấm điểm lô này.")
+        except Exception as e:
+            print(f"⚠️ Lỗi đọc {baseline_file}: {e}")
+            valid_results = []
+            
+    # Try loading chatbot responses from cache if baseline is not used
+    if not valid_results and os.path.exists(cache_file):
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
                 valid_results = json.load(f)
@@ -279,6 +311,7 @@ def main():
                     "question": matched_case["question"],
                     "chatbot_response": matched_case["chatbot_response"],
                     "sources_used": matched_case["sources_used"],
+                    "response_time_ms": matched_case.get("response_time_ms", 0),
                     "scores": {
                         "guideline_adherence": ga_score,
                         "guideline_adherence_reasoning": ga_reason,
@@ -300,16 +333,46 @@ def main():
         except Exception as e:
             print(f"  ❌ Lỗi khi xử lý Lô {b_idx + 1}: {e}")
             
-    # Sort results
-    final_evaluations.sort(key=lambda x: x["case_id"])
-    
-    # Save results to evaluation_results.json
-    res_path = "data/evaluation_results.json"
-    os.makedirs("data", exist_ok=True)
-    with open(res_path, "w", encoding="utf-8") as f:
-        json.dump(final_evaluations, f, ensure_ascii=False, indent=2)
+    # Merge scores back into results
+    for i, case in enumerate(valid_results):
+        unique_id = case.get("_unique_id")
         
-    print(f"\n🎉 Đã lưu toàn bộ kết quả chấm điểm của {len(final_evaluations)} câu vào {res_path}!")
+        if unique_id:
+            # Khớp chính xác bằng unique_id
+            match = next((x for x in final_evaluations if str(x.get("id", x.get("case_id"))) == unique_id), None)
+            if match:
+                case["scores"] = match.get("scores", {})
+            else:
+                case["scores"] = final_evaluations[i].get("scores", {}) if i < len(final_evaluations) else {}
+        else:
+            # Fallback nếu không có unique_id (vd: cache cũ)
+            if i < len(final_evaluations):
+                match = next((x for x in final_evaluations if str(x.get("case_id")) == str(case["case_id"])), None)
+                if match:
+                    case["scores"] = match.get("scores", {})
+                else:
+                    case["scores"] = final_evaluations[i].get("scores", {}) if i < len(final_evaluations) else {}
+                    
+        # Xóa trường tạm
+        if "_unique_id" in case:
+            del case["_unique_id"]
+        
+    print(f"\n🎉 Đã lưu toàn bộ kết quả chấm điểm của {len(valid_results)} câu vào data/evaluation_results.json!")
+    
+    # Save back to file
+    if os.path.exists(baseline_file) and len(valid_results) >= 200:
+        repacked = {"no_rag": [], "bm25_only": [], "dense_only": [], "hybrid": []}
+        for case in valid_results:
+            cfg = case.get("config", "hybrid")
+            if cfg in repacked:
+                repacked[cfg].append(case)
+        with open(baseline_file, "w", encoding="utf-8") as f:
+            json.dump(repacked, f, ensure_ascii=False, indent=2)
+        print("💾 Đã cập nhật điểm số vào file data/baseline_results.json")
+    else:
+        with open("data/evaluation_results.json", "w", encoding="utf-8") as f:
+            json.dump(valid_results, f, ensure_ascii=False, indent=2)
+
     
     # Generate detailed Markdown Report case-by-case
     try:

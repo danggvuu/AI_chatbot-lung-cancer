@@ -3,6 +3,7 @@ import json
 import re
 import requests
 import socket
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Endpoints configuration with automatic port detection
@@ -444,10 +445,12 @@ def evaluate_single_case(q):
     
     # 1. Get chatbot response
     try:
+        start_time = time.time()
         chat_response = requests.post(CHATBOT_API_URL, json={
             "messages": [{"role": "user", "content": q["question"]}],
             "stream": False
         }, timeout=180)
+        end_time = time.time()
         
         if chat_response.status_code != 200:
             print(f"❌ Lỗi gọi chatbot API cho câu {q['id']}: {chat_response.status_code} - {chat_response.text}")
@@ -501,6 +504,7 @@ def evaluate_single_case(q):
             "question": q["question"],
             "chatbot_response": response_text,
             "sources_used": sources_used,
+            "response_time_ms": int((end_time - start_time) * 1000),
             "scores": {
                 "guideline_adherence": ga_score,
                 "guideline_adherence_reasoning": ga_reason,
@@ -532,7 +536,7 @@ def evaluate():
     
     print(f"⚡ Đang chạy song song với tối đa {max_workers} luồng...")
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(evaluate_single_case, q): q for q in QUESTIONS[:5]}
+        futures = {executor.submit(evaluate_single_case, q): q for q in QUESTIONS}
         for future in as_completed(futures):
             res = future.result()
             if res is not None:
