@@ -39,6 +39,7 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
   const [allSources, setAllSources] = useState<AllSource[]>([]);
   const [activeTab, setActiveTab] = useState('references');
   const sourceRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   // Ingest form state
   const [crawlUrl, setCrawlUrl] = useState('');
@@ -92,11 +93,39 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
   };
 
   useEffect(() => {
+    fetchSources();
+  }, []);
+
+  const fetchSources = () => {
     fetch('/api/sources')
       .then((res) => res.json())
       .then((data) => setAllSources(data))
       .catch(() => setAllSources([]));
-  }, []);
+  };
+
+  const handleDeleteSource = async (id: number) => {
+    if (!window.confirm("Bạn có chắc chắn muốn xóa dữ liệu này khỏi bộ nhớ AI không? Hành động này không thể hoàn tác.")) {
+      return;
+    }
+    
+    setDeletingId(id);
+    try {
+      const response = await fetch(`/api/sources/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        // Remove from UI optimistically or refetch
+        fetchSources();
+      } else {
+        const err = await response.json();
+        alert(`Lỗi khi xóa: ${err.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      alert("Lỗi kết nối tới server khi xóa.");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   // Switch to references tab when new sources arrive
   useEffect(() => {
@@ -333,10 +362,23 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
                     )}
                   >
                     <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                      <Badge variant="outline" className={cn('text-[0.68rem] font-bold px-2 py-0.5 rounded-md', getBadgeStyle(src.source))}>
-                        {src.source}
-                      </Badge>
-                      <span className="text-[0.68rem] text-muted-foreground font-mono font-medium">ID: #{src.id}</span>
+                      <div className="flex gap-2 items-center">
+                        <Badge variant="outline" className={cn('text-[0.68rem] font-bold px-2 py-0.5 rounded-md', getBadgeStyle(src.source))}>
+                          {src.source}
+                        </Badge>
+                        <span className="text-[0.68rem] text-muted-foreground font-mono font-medium">ID: #{src.id}</span>
+                      </div>
+                      
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        disabled={deletingId === src.id}
+                        onClick={() => handleDeleteSource(src.id)}
+                        className="h-6 px-2 text-[0.65rem] text-red-400 hover:text-red-300 hover:bg-red-500/20 border border-transparent hover:border-red-500/30 transition-all rounded"
+                        title="Xóa dữ liệu này"
+                      >
+                        {deletingId === src.id ? '⏳' : '🗑️ Xóa'}
+                      </Button>
                     </div>
                     <h4 className="font-heading font-bold text-sm text-foreground mb-1 leading-snug tracking-wide">
                       {src.title}
