@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from contextlib import asynccontextmanager
-from .routes import chat, sources, health
+from .routes import chat, sources, health, ingest
 import yaml
 
 @asynccontextmanager
@@ -43,6 +43,7 @@ def create_app() -> FastAPI:
     app.include_router(chat.router, prefix="/api")
     app.include_router(sources.router, prefix="/api")
     app.include_router(health.router, prefix="/api")
+    app.include_router(ingest.router, prefix="/api")
 
     # Serve React frontend build if available
     FRONTEND_DIST = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")

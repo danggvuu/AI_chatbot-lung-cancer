@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import type { Source } from '@/lib/markdown';
 
@@ -37,6 +39,57 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
   const [allSources, setAllSources] = useState<AllSource[]>([]);
   const [activeTab, setActiveTab] = useState('references');
   const sourceRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+
+  // Ingest form state
+  const [crawlUrl, setCrawlUrl] = useState('');
+  const [crawlMode, setCrawlMode] = useState<'scrape' | 'crawl'>('scrape');
+  const [firecrawlApiKey, setFirecrawlApiKey] = useState('');
+  const [firecrawlApiUrl, setFirecrawlApiUrl] = useState('');
+  const [isCrawling, setIsCrawling] = useState(false);
+  const [crawlResult, setCrawlResult] = useState<{ success: boolean; chunks_added: number; log: string } | null>(null);
+
+  const handleCrawl = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!crawlUrl) return;
+
+    setIsCrawling(true);
+    setCrawlResult(null);
+
+    try {
+      const response = await fetch('/api/ingest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: crawlUrl,
+          mode: crawlMode,
+          api_key: firecrawlApiKey || undefined,
+          api_url: firecrawlApiUrl || undefined,
+        }),
+      });
+
+      const data = await response.json();
+      setCrawlResult({
+        success: data.success ?? false,
+        chunks_added: data.chunks_added ?? 0,
+        log: data.log ?? 'Cào thành công nhưng không có nhật ký.'
+      });
+
+      if (data.success && data.chunks_added > 0) {
+        fetch('/api/sources')
+          .then((res) => res.json())
+          .then((sourcesData) => setAllSources(sourcesData))
+          .catch(() => {});
+      }
+    } catch (err: any) {
+      setCrawlResult({
+        success: false,
+        chunks_added: 0,
+        log: `❌ Lỗi kết nối tới máy chủ: ${err?.message || err}`,
+      });
+    } finally {
+      setIsCrawling(false);
+    }
+  };
 
   useEffect(() => {
     fetch('/api/sources')
@@ -103,6 +156,12 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
             className="flex-1 rounded-none border-b-2 border-transparent data-[state=active]:border-violet data-[state=active]:text-violet data-[state=active]:bg-violet/5 data-[state=active]:shadow-none font-heading font-bold text-xs py-3.5 tracking-wider uppercase transition-all duration-300"
           >
             Nguồn dữ liệu
+          </TabsTrigger>
+          <TabsTrigger
+            value="ingest"
+            className="flex-1 rounded-none border-b-2 border-transparent data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500 data-[state=active]:bg-emerald-500/5 data-[state=active]:shadow-none font-heading font-bold text-xs py-3.5 tracking-wider uppercase transition-all duration-300"
+          >
+            Cập nhật dữ liệu
           </TabsTrigger>
         </TabsList>
 
@@ -296,6 +355,123 @@ export function KnowledgePanel({ currentSources }: KnowledgePanelProps) {
                   </Card>
                 ))}
               </div>
+        </TabsContent>
+
+        {/* Ingest Tab */}
+        <TabsContent value="ingest" className="flex-1 m-0 min-h-0 overflow-y-auto p-5">
+          <Card className="p-4 bg-white/[0.02] border-white/[0.06] border-l-4 border-l-emerald-500/60 mb-5 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+            <h3 className="font-heading font-bold text-sm text-foreground mb-1">Cập nhật dữ liệu y văn tự động</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Nhập đường dẫn trang web hoặc tài liệu y văn ung thư phổi để hệ thống tự động cào (Firecrawl), làm sạch quảng cáo, khử trùng lặp và cập nhật vào cơ sở dữ liệu ngay lập tức.
+            </p>
+          </Card>
+
+          <form onSubmit={handleCrawl} className="flex flex-col gap-4 mb-5">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="url" className="text-xs font-bold text-muted-foreground">Đường dẫn URL cần cào</label>
+              <Input
+                id="url"
+                type="url"
+                required
+                placeholder="https://example.com/bai-viet-ung-thu-phoi"
+                value={crawlUrl}
+                onChange={(e) => setCrawlUrl(e.target.value)}
+                className="bg-white/5 border-white/10 text-foreground"
+              />
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-1 flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-muted-foreground">Chế độ cào</label>
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant={crawlMode === 'scrape' ? 'default' : 'outline'}
+                    onClick={() => setCrawlMode('scrape')}
+                    className={cn(
+                      "flex-1 text-xs py-1.5 h-auto",
+                      crawlMode === 'scrape' ? "bg-emerald-500 text-background hover:bg-emerald-600" : "border-white/10 hover:bg-white/5"
+                    )}
+                  >
+                    Cào 1 trang (Scrape)
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={crawlMode === 'crawl' ? 'default' : 'outline'}
+                    onClick={() => setCrawlMode('crawl')}
+                    className={cn(
+                      "flex-1 text-xs py-1.5 h-auto",
+                      crawlMode === 'crawl' ? "bg-emerald-500 text-background hover:bg-emerald-600" : "border-white/10 hover:bg-white/5"
+                    )}
+                  >
+                    Quét website (Crawl)
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <details className="group border border-white/5 rounded-xl bg-white/[0.01]">
+              <summary className="text-xs font-bold text-muted-foreground cursor-pointer px-4 py-3 select-none flex items-center justify-between hover:bg-white/[0.02]">
+                <span>⚙️ Cấu hình Firecrawl nâng cao (Tùy chọn)</span>
+                <span className="transition-transform group-open:rotate-180">👇</span>
+              </summary>
+              <div className="px-4 pb-4 pt-1 flex flex-col gap-3 border-t border-white/5 bg-black/10">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="apiKey" className="text-[10px] font-bold text-muted-foreground">Firecrawl API Key</label>
+                  <Input
+                    id="apiKey"
+                    type="password"
+                    placeholder="Mặc định sử dụng cấu hình server nếu trống"
+                    value={firecrawlApiKey}
+                    onChange={(e) => setFirecrawlApiKey(e.target.value)}
+                    className="bg-white/5 border-white/10 text-foreground text-xs"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="apiUrl" className="text-[10px] font-bold text-muted-foreground">Firecrawl API URL</label>
+                  <Input
+                    id="apiUrl"
+                    type="text"
+                    placeholder="Mặc định: https://api.firecrawl.dev"
+                    value={firecrawlApiUrl}
+                    onChange={(e) => setFirecrawlApiUrl(e.target.value)}
+                    className="bg-white/5 border-white/10 text-foreground text-xs"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <Button
+              type="submit"
+              disabled={isCrawling || !crawlUrl}
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal text-background hover:from-emerald-600 hover:to-teal-600 font-bold tracking-wide cursor-pointer h-10"
+            >
+              {isCrawling ? '⏳ Đang cào dữ liệu và lập chỉ mục...' : '🚀 Bắt đầu cào dữ liệu'}
+            </Button>
+          </form>
+
+          {/* Crawl Status Console */}
+          {crawlResult && (
+            <Card className={cn(
+              "p-4 border-l-4 overflow-hidden relative mb-5",
+              crawlResult.success
+                ? "bg-emerald-500/5 border-l-emerald-500 border-emerald-500/10"
+                : "bg-red-500/5 border-l-red-500 border-red-500/10"
+            )}>
+              <h4 className="text-xs font-bold text-foreground mb-2 flex items-center gap-1.5">
+                {crawlResult.success ? '✅ Cào dữ liệu hoàn tất' : '❌ Lỗi cào dữ liệu'}
+                {crawlResult.success && (
+                  <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-400 border-emerald-500/25">
+                    Đã thêm {crawlResult.chunks_added} chunks
+                  </Badge>
+                )}
+              </h4>
+              <pre className="text-[10px] font-mono text-muted-foreground bg-black/40 p-3 rounded-lg overflow-x-auto whitespace-pre-wrap leading-normal max-h-60 overflow-y-auto">
+                {crawlResult.log}
+              </pre>
+            </Card>
+          )}
         </TabsContent>
       </Tabs>
 
