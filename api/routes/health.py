@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends
 from fastapi.responses import JSONResponse
 import requests
 import os
@@ -16,31 +16,59 @@ except Exception:
     OLLAMA_API_URL = "http://localhost:11434"
     OLLAMA_MODEL = "qwen2.5:3b"
 
+def get_chat_service(request: Request):
+    return getattr(request.app.state, "chat_service", None)
+
 @router.get("/health")
-async def health():
+async def health(chat_service=Depends(get_chat_service)):
     """Verify backend health and check connections."""
-    ollama_status = "offline"
+    backend_status = "offline"
+    backend_type = "ollama"
     available_models = []
     
+    # 1. Check Llama.cpp first
     try:
-        r = requests.get(f"{OLLAMA_API_URL}/api/tags", timeout=3)
+        r = requests.get("http://localhost:8080/health", timeout=1)
         if r.status_code == 200:
-            ollama_status = "online"
-            models_data = r.json()
-            available_models = [m["name"] for m in models_data.get("models", [])]
+            backend_status = "online"
+            backend_type = "llamacpp"
     except Exception:
         pass
         
-    # We will hook this up to the actual retriever later
-    kb_loaded = True
+    # 2. Check Ollama if Llama.cpp is offline
+    if backend_status == "offline":
+        try:
+            r = requests.get(f"{OLLAMA_API_URL}/api/tags", timeout=1)
+            if r.status_code == 200:
+                backend_type = "ollama"
+                backend_status = "online"
+                models_data = r.json()
+                available_models = [m["name"] for m in models_data.get("models", [])]
+        except Exception:
+            try:
+                r = requests.get(f"{OLLAMA_API_URL}/health", timeout=1)
+                if r.status_code == 200:
+                    backend_type = "llamacpp"
+                    backend_status = "online"
+            except Exception:
+                pass
+                
+    kb_loaded = False
+    kb_records = 0
+    if chat_service and hasattr(chat_service.retriever, "documents"):
+        kb_loaded = len(chat_service.retriever.documents) > 0
+        kb_records = len(chat_service.retriever.documents)
     
     return {
         "status": "healthy",
         "database_loaded": kb_loaded,
-        "database_records": 0, # Placeholder
-        "ollama_connection": ollama_status,
+        "database_records": kb_records,
+        "backend_type": backend_type,
+        "backend_connection": backend_status,
+        # Legacy keys for frontend compatibility
+        "ollama_connection": backend_status,
         "ollama_url": OLLAMA_API_URL,
-        "ollama_model": OLLAMA_MODEL,
+        "ollama_model": "Qwen 2.5 3B (Llama.cpp GPU)" if backend_type == "llamacpp" else OLLAMA_MODEL,
         "ollama_model_available": OLLAMA_MODEL in available_models or f"{OLLAMA_MODEL}:latest" in available_models,
         "available_models": available_models
     }

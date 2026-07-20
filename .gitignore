@@ -14,3 +14,5 @@ build/
 *.DS_Store
 .gemini/
 data/qdrant_db/
+*.gguf
+llama_cpp/
