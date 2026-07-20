@@ -1,0 +1,252 @@
+[
+    {
+        "id": 1,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Bố tôi 60 tuổi, ho khan dai dẳng hơn 1 tháng nay, dạo này thỉnh thoảng khạc ra đờm lẫn chút máu tươi và sụt mất 4kg. Ông nghĩ mình chỉ bị viêm phế quản do hút thuốc lá nên tự mua thuốc ho uống. Tôi có nên đưa ông đi khám chuyên khoa ngay không hay cứ để ông uống hết liều thuốc tự mua?"
+    },
+    {
+        "id": 2,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Dạo gần đây tôi hay bị đau nhói một bên ngực khi hít thở sâu hoặc ho, kèm theo khàn giọng kéo dài hơn 2 tuần mà không bị viêm họng. Tôi nghe nói khàn giọng chỉ là viêm thanh quản thông thường, có đúng không hay cần đi khám chuyên khoa?"
+    },
+    {
+        "id": 3,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi bị sụt cân rất nhanh, khoảng 6kg trong vòng 2 tháng qua mà không hề ăn kiêng hay tập thể dục, dạo này người lúc nào cũng mệt mỏi, uể oải. Liệu đây có phải là dấu hiệu của bệnh ung thư phổi không và tôi cần chụp gì để kiểm tra?"
+    },
+    {
+        "id": 4,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Một người trên 40 tuổi bỗng nhiên bị ho kéo dài liên tục trên 3 tuần mặc dù đã uống nhiều loại kháng sinh và thuốc ho không đỡ. Tình huống này có cần đi khám chuyên khoa Hô hấp hoặc Ung bướu ngay không?"
+    },
+    {
+        "id": 5,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi là người hút thuốc lá lâu năm, gần đây thấy giọng nói bị khàn đi rõ rệt, ho nhiều hơn và thay đổi âm sắc khi ho. Tôi nên theo dõi thêm tại nhà hay phải đi khám tầm soát ngay?"
+    },
+    {
+        "id": 6,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Mẹ tôi thỉnh thoảng bị ho ra máu lẫn đờm dù chỉ một lượng rất nhỏ như sợi chỉ. Mẹ tôi nói do nóng trong người nên chỉ cần uống nước mát. Ý kiến này có đúng không và mức độ nguy hiểm của ho ra máu là thế nào?"
+    },
+    {
+        "id": 7,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi hay bị nhiễm trùng đường hô hấp như viêm phổi và viêm phế quản tái đi tái lại nhiều lần cùng ở một vị trí trên phổi phải. Bác sĩ nói đây có thể là dấu hiệu khối u chèn ép phế quản, có đúng không?"
+    },
+    {
+        "id": 8,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi bị khó thở nhẹ tiến triển dần, lúc đầu chỉ bị khi làm việc nặng hoặc gắng sức, nay đi bộ bình thường cũng thấy hụt hơi. Tôi có tiền sử hút thuốc lá, tôi có cần đi chụp CT quét phổi không?"
+    },
+    {
+        "id": 9,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi bị đau nhức vai gáy dữ dội lan xuống cánh tay trái, đi châm cứu và uống thuốc xương khớp 1 tháng nay không đỡ. Bác sĩ nghi ngờ hội chứng Horner hoặc u đỉnh phổi (u Pancoast). Xin hỏi u đỉnh phổi có gây đau vai cánh tay thật không?"
+    },
+    {
+        "id": 10,
+        "category": "Nhận diện triệu chứng cảnh báo sớm & Định hướng xử trí",
+        "question": "Tôi bị ho khạc đờm đặc kéo dài, sụt cân nhẹ và thỉnh thoảng sốt nhẹ về chiều. Làm thế nào để phân biệt giữa bệnh lao phổi và bệnh ung thư phổi?"
+    },
+    {
+        "id": 11,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tôi năm nay 55 tuổi, hút thuốc lá mỗi ngày 1 bao đã hơn 25 năm nay, hiện tại sức khỏe bình thường không ho hen gì. Tôi nghe nói chụp X-quang phổi hàng năm là đủ để phát hiện ung thư sớm rồi, có đúng không? Tôi nên sàng lọc bằng phương pháp nào và bao lâu một lần?"
+    },
+    {
+        "id": 12,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tôi 65 tuổi, đã bỏ hút thuốc lá cách đây 10 năm sau khi đã hút liên tục suốt 30 năm (mỗi ngày nửa bao). Hiện tôi có nằm trong nhóm đối tượng cần đi chụp CT liều thấp (LDCT) để sàng lọc ung thư phổi hàng năm không?"
+    },
+    {
+        "id": 13,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tôi nghe nói chụp cắt lớp vi tính liều thấp (LDCT) giúp phát hiện nốt phổi rất nhỏ. Nếu chụp LDCT phát hiện ra một nốt phổi đơn độc thì có chắc chắn là bị ung thư phổi không và cần xử trí thế nào?"
+    },
+    {
+        "id": 14,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Chồng tôi năm nay 52 tuổi, không hút thuốc nhưng làm việc trong môi trường tiếp xúc nhiều với bụi amiăng và khói bụi xây dựng công nghiệp. Ông ấy có cần đi chụp sàng lọc ung thư phổi định kỳ không?"
+    },
+    {
+        "id": 15,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Bố tôi có tiền sử hút thuốc lá nặng (30 bao-năm), bác sĩ khuyên chụp LDCT hàng năm. Chụp LDCT (Low-Dose CT) có gì khác biệt so với chụp CT ngực thông thường và lượng tia xạ có an toàn không?"
+    },
+    {
+        "id": 16,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tại sao các bác sĩ y khoa khuyến cáo KHÔNG nên sử dụng X-quang phổi thông thường làm phương pháp chính để sàng lọc sớm ung thư phổi ở người có nguy cơ cao?"
+    },
+    {
+        "id": 17,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tôi có bố ruột bị ung thư phổi khi ông 60 tuổi. Tôi năm nay 45 tuổi, không hút thuốc lá. Tiền sử gia đình như vậy có làm tăng nguy cơ mắc bệnh của tôi không và tôi có cần tầm soát sớm không?"
+    },
+    {
+        "id": 18,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Tôi nghe nói hút thuốc lá thụ động (hít khói thuốc từ người khác) cũng gây ra ung thư phổi. Tỷ lệ tăng nguy cơ là bao nhiêu và đối tượng này có cần chụp tầm soát LDCT không?"
+    },
+    {
+        "id": 19,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Hệ thống phân loại Lung-RADS trên kết quả chụp CT liều thấp (LDCT) là gì? Nếu kết quả ghi Lung-RADS nhóm 1 hoặc 2 thì có nghĩa là gì?"
+    },
+    {
+        "id": 20,
+        "category": "Sàng lọc chủ động & Khuyến cáo chuyên môn",
+        "question": "Bỏ thuốc lá được bao nhiêu năm thì nguy cơ mắc ung thư phổi của tôi giảm xuống bằng mức của người bình thường chưa từng hút thuốc?"
+    },
+    {
+        "id": 21,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Người nhà tôi mới có chẩn đoán ung thư phổi không tế bào nhỏ giai đoạn 4, bác sĩ yêu cầu làm xét nghiệm đột biến gen trước khi điều trị. Xin hỏi vì sao phải xét nghiệm đột biến gen, liệu pháp nhắm trúng đích (targeted therapy) khác gì hóa trị thông thường và nó có chữa khỏi hoàn toàn được không?"
+    },
+    {
+        "id": 22,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Xét nghiệm gen của mẹ tôi cho kết quả có đột biến gen EGFR dương tính. Bác sĩ chỉ định dùng thuốc nhắm đích thế hệ mới (Osimertinib). Xin hỏi thuốc này hoạt động thế nào và có tác dụng phụ gì đáng lưu ý không?"
+    },
+    {
+        "id": 23,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Sự khác nhau cơ bản giữa ung thư phổi tế bào nhỏ (SCLC) và ung thư phổi không tế bào nhỏ (NSCLC) về mặt phương pháp điều trị và tiên lượng sống là gì?"
+    },
+    {
+        "id": 24,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Tôi nghe nói có liệu pháp miễn dịch (Immunotherapy) điều trị ung thư phổi bằng cách kích hoạt hệ thống miễn dịch tự nhiên của cơ thể. Đối tượng nào phù hợp và xét nghiệm PD-L1 đóng vai trò gì?"
+    },
+    {
+        "id": 25,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Xét nghiệm đột biến gen ALK dương tính trong ung thư phổi không tế bào nhỏ (NSCLC) thì nên dùng loại thuốc nhắm đích nào (Alectinib hay Gefitinib)?"
+    },
+    {
+        "id": 26,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Tôi bị ung thư phổi giai đoạn IA (1A). Bác sĩ nói chỉ cần phẫu thuật cắt thùy phổi là đủ, không cần phải hóa trị hay xạ trị bổ trợ. Điều này có đúng với phác đồ hướng dẫn của Bộ Y tế không?"
+    },
+    {
+        "id": 27,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Điều trị hóa-xạ trị đồng thời thường được áp dụng cho bệnh nhân ung thư phổi giai đoạn nào và sau khi hoàn thành hóa-xạ trị có cần dùng thêm liệu pháp miễn dịch duy trì không?"
+    },
+    {
+        "id": 28,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Đối với bệnh nhân ung thư phổi không tế bào nhỏ giai đoạn muộn có đột biến gen EGFR, tại sao việc xét nghiệm gen lại là bắt buộc trước khi đưa ra phác đồ điều trị?"
+    },
+    {
+        "id": 29,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Hóa trị tân bổ trợ (hóa trị trước khi phẫu thuật) và hóa trị bổ trợ (sau khi phẫu thuật) có vai trò và mục đích khác nhau như thế nào trong ung thư phổi giai đoạn II?"
+    },
+    {
+        "id": 30,
+        "category": "Tư vấn điều trị đích & Xét nghiệm đột biến gen",
+        "question": "Liệu pháp nhắm trúng đích có gặp phải hiện tượng kháng thuốc (drug resistance) sau một thời gian điều trị không? Nếu bị kháng thuốc thì bác sĩ sẽ xử lý thế nào?"
+    },
+    {
+        "id": 31,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Tôi mới phát hiện bị u phổi ác tính giai đoạn 2. Hàng xóm khuyên tôi không nên phẫu thuật cắt u vì động dao kéo sẽ làm tế bào ung thư di căn nhanh hơn, thay vào đó nên đi đắp thuốc nam và uống lá xạ đen để tiêu u. Tôi có nên nghe theo lời khuyên này không?"
+    },
+    {
+        "id": 32,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Có tin đồn cho rằng tế bào ung thư rất thích đường và việc ăn ngọt sẽ nuôi tế bào ung thư phát triển nhanh hơn, do đó bệnh nhân ung thư phổi cần nhịn ăn hoàn toàn tinh bột và đường để bỏ đói tế bào ung thư. Chế độ ăn kiêng cực đoan này có đúng khoa học không?"
+    },
+    {
+        "id": 33,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Tôi nghe nói uống lá đu đủ đực phơi khô nấu nước cùng với củ sả có thể tiêu diệt hoàn toàn tế bào ung thư phổi mà không cần hóa trị. Bài thuốc dân gian này đã được y học kiểm chứng chưa?"
+    },
+    {
+        "id": 34,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Hàng xóm khuyên tôi đi cúng bái giải hạn và dùng liệu pháp năng lượng tâm linh để tự khỏi ung thư phổi thay vì xạ trị vì xạ trị sẽ làm cơ thể bị cháy sém và chết nhanh hơn. Lời khuyên này nguy hiểm thế nào?"
+    },
+    {
+        "id": 35,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Bệnh nhân ung thư phổi có nên bồi bổ yến sào, sữa hay nhân sâm không? Hàng xóm bảo ăn đồ bổ dưỡng sẽ làm khối u phát triển nhanh hơn, chỉ nên ăn cơm với muối vừng để teo u."
+    },
+    {
+        "id": 36,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Tôi nghe nói chỉ những người hút thuốc lá nặng mới bị ung thư phổi, còn người không hút thuốc và phụ nữ thì tuyệt đối không bao giờ mắc bệnh này. Điều này có đúng thực tế lâm sàng không?"
+    },
+    {
+        "id": 37,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Một số người tin rằng ung thư phổi là căn bệnh truyền nhiễm, có thể lây qua đường hô hấp hoặc dùng chung bát đũa với người bệnh, nên họ cách ly người bệnh hoàn toàn. Quan niệm này có đúng không?"
+    },
+    {
+        "id": 38,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Tôi nghe nói nếu đã bị ung thư phổi giai đoạn muộn (di căn) thì việc điều trị y tế chỉ làm bệnh nhân đau đớn và tốn kém vô ích, tốt nhất là đưa về nhà chờ mất. Quan điểm này có đúng y khoa hiện đại không?"
+    },
+    {
+        "id": 39,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Có người nói uống nấm linh chi hoặc đông trùng hạ thảo có thể thay thế hoàn toàn cho liệu pháp nhắm đích và hóa trị trong điều trị ung thư phổi không tế bào nhỏ. Bác sĩ khuyên thế nào?"
+    },
+    {
+        "id": 40,
+        "category": "Giải độc tin đồn thất thiệt (Myth Busting) & Hướng dẫn điều trị",
+        "question": "Nhiều người tin rằng tế bào ung thư phổi phát triển rất mạnh trong môi trường axit, vì vậy uống nước kiềm hoặc baking soda hàng ngày sẽ làm kiềm hóa cơ thể và tiêu diệt hoàn toàn tế bào ung thư. Lời đồn này có đúng không?"
+    },
+    {
+        "id": 41,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bác tôi đang điều trị ung thư phổi giai đoạn muộn, dạo này hay ho khan, khàn tiếng rõ rệt và xuất hiện phù ở vùng cổ, mặt. Đây có phải là tác dụng phụ của hóa trị không, có cần đi cấp cứu không và chúng tôi cần làm gì để hỗ trợ giảm nhẹ tại nhà?"
+    },
+    {
+        "id": 42,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bệnh nhân ung thư phổi đột ngột ho ra máu tươi ồ ạt sau một cơn ho sặc sụa. Đây là biến chứng gì, có nguy hiểm không và người nhà cần sơ cứu tại chỗ như thế nào trước khi đưa đến viện?"
+    },
+    {
+        "id": 43,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Người nhà tôi bị ung thư phổi chèn ép trung thất, dạo này thường xuyên khó thở dữ dội khi nằm ngửa, phải ngồi dậy mới thở được, môi và các đầu ngón tay tím tái. Chúng tôi phải xử trí thế nào?"
+    },
+    {
+        "id": 44,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bệnh nhân ung thư phổi đang điều trị bỗng nhiên bị đau đầu dữ dội, buồn nôn, yếu nửa người bên trái và co giật nhẹ. Đây có phải triệu chứng di căn não không và cần khám gì gấp?"
+    },
+    {
+        "id": 45,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bác tôi bị tràn dịch màng phổi do ung thư di căn, ngực đau nhói tăng khi hít thở và ho khó chịu. Thủ thuật chọc hút dịch màng phổi có vai trò gì và cần theo dõi biến chứng gì sau chọc hút?"
+    },
+    {
+        "id": 46,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bệnh nhân điều trị hóa trị ung thư phổi bị sốt cao trên 38.5 độ C kèm rét run, đau họng, ho tăng. Đây có phải là hội chứng hạ bạch cầu hạt gây nhiễm trùng cơ hội không và mức nguy kịch ra sao?"
+    },
+    {
+        "id": 47,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bác tôi bị ung thư phổi giai đoạn cuối bị đau nhức xương cốt dữ dội ở vùng cột sống, đau tăng khi vận động và không ngủ được. Bác sĩ thường chỉ định dùng loại thuốc giảm đau nào theo bậc thang WHO?"
+    },
+    {
+        "id": 48,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Người nhà tôi bị khó nuốt trầm trọng, uống nước cũng sặc và ho khan liên tục do khối u chèn ép thực quản và dây thần kinh. Làm sao để bồi bổ dinh dưỡng và hỗ trợ ăn uống tại nhà?"
+    },
+    {
+        "id": 49,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Phù áo khoác (phù nề mặt, cổ, ngực và hai tay) kèm theo nổi rõ các mạch máu ở vùng ngực trên là biểu hiện của tình trạng cấp cứu nào trong ung thư phổi?"
+    },
+    {
+        "id": 50,
+        "category": "Nhận diện biến chứng nguy cấp & Hỗ trợ giảm nhẹ tại nhà",
+        "question": "Bệnh nhân bị khó thở cấp tính kèm theo nghe thấy tiếng rít ở đường thở (tiếng rít thanh quản) khi hít vào. Đây có phải dấu hiệu u chèn ép khí quản cổ gây tắc nghẽn đường thở nguy hiểm không?"
+    }
+]

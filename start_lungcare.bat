@@ -66,9 +66,17 @@ for /f "tokens=*" %%i in ('python -c "import json; print(len(json.load(open('dat
 if "%CHUNK_COUNT%"=="" set CHUNK_COUNT=0
 echo   ✅  Knowledge Base: %CHUNK_COUNT% phân đoạn y khoa
 
-:: --- 5. Kiểm tra Ollama ---
+:: --- 5. Kiểm tra LLM Backend (Llama.cpp vs Ollama) ---
 echo.
 set OLLAMA_MODEL=qwen2.5:3b
+
+:: Kiểm tra xem llama-server.exe có đang chạy không
+tasklist /FI "IMAGENAME eq llama-server.exe" 2>nul | findstr /i "llama-server.exe" >nul
+if %errorlevel% equ 0 (
+    echo   ✅  Đã phát hiện Llama.cpp GPU Server đang hoạt động làm bộ não lâm sàng!
+    goto server_start
+)
+
 where ollama >nul 2>nul
 if %errorlevel% equ 0 (
     echo   ✅  Ollama đã cài đặt
@@ -103,6 +111,8 @@ if %errorlevel% equ 0 (
     echo.
     echo   ⏳  Server vẫn sẽ khởi động nhưng chatbot sẽ không trả lời được.
 )
+
+:server_start
 
 :: --- 6. Khởi động server ---
 echo.

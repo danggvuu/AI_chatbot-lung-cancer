@@ -3,12 +3,20 @@ import json
 import argparse
 import requests
 import re
+import time
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, HTMLResponse, StreamingResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+
+HAS_HTTPX = False
+try:
+    import httpx
+    HAS_HTTPX = True
+except ImportError:
+    pass
 
 from retrieval import LungCancerRetriever
 
@@ -40,6 +48,26 @@ if HAS_FRONTEND_BUILD:
 OLLAMA_API_URL = os.environ.get("OLLAMA_API_URL", "http://localhost:11434").rstrip('/')
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:3b")
 KB_PATH = os.environ.get("KB_PATH", "data/knowledge_base.json")
+
+# Simple RAM TTL Cache for fast responses (<10ms)
+class SimpleTTLCache:
+    def __init__(self, ttl_seconds=300):
+        self.ttl = ttl_seconds
+        self.cache = {}
+
+    def get(self, key: str) -> dict | None:
+        if key in self.cache:
+            val, expire_time = self.cache[key]
+            if time.time() < expire_time:
+                return val
+            else:
+                del self.cache[key]
+        return None
+
+    def set(self, key: str, value: dict):
+        self.cache[key] = (value, time.time() + self.ttl)
+
+chat_cache = SimpleTTLCache(ttl_seconds=300)
 
 # Initialize retriever
 retriever = LungCancerRetriever(kb_path=KB_PATH)
@@ -247,39 +275,101 @@ async def chat(request: Request):
     )
     ollama_messages.append({"role": "user", "content": user_enriched_content})
     
-    payload = {
-        "model": OLLAMA_MODEL,
-        "messages": ollama_messages,
-        "stream": stream_requested,
-        "options": {
+    # Detect LLM Backend (Ollama vs llama.cpp)
+    backend = "ollama"
+    backend_url = OLLAMA_API_URL
+    
+    # 1. Check if llama.cpp is running on port 8080
+    try:
+        r = requests.get("http://localhost:8080/health", timeout=0.5)
+        if r.status_code == 200:
+            backend = "llamacpp"
+            backend_url = "http://localhost:8080"
+    except Exception:
+        pass
+        
+    # 2. If not, check if llama.cpp is running on port 11434 (user might bind it there)
+    if backend == "ollama":
+        try:
+            r = requests.get(f"{OLLAMA_API_URL}/health", timeout=0.5)
+            if r.status_code == 200:
+                backend = "llamacpp"
+                backend_url = OLLAMA_API_URL
+        except Exception:
+            pass
+            
+    # 3. Check environment variable override
+    env_backend = os.environ.get("LLM_BACKEND")
+    if env_backend in ["ollama", "llamacpp"]:
+        backend = env_backend
+        if backend == "llamacpp":
+            backend_url = os.environ.get("LLAMACPP_API_URL", "http://localhost:8080").rstrip('/')
+        else:
+            backend_url = OLLAMA_API_URL
+
+    if backend == "llamacpp":
+        payload = {
+            "messages": ollama_messages,
             "temperature": 0.15,
-            "num_predict": 500,
-            "num_ctx": 4096,
-            "top_k": 20,
-            "top_p": 0.85
+            "max_tokens": 500,
+            "stream": stream_requested
         }
-    }
+    else:
+        payload = {
+            "model": OLLAMA_MODEL,
+            "messages": ollama_messages,
+            "stream": stream_requested,
+            "options": {
+                "temperature": 0.15,
+                "num_predict": 500,
+                "num_ctx": 4096,
+                "top_k": 20,
+                "top_p": 0.85
+            }
+        }
     
     if stream_requested:
         def event_stream():
             yield f"data: {json.dumps({'sources': sources_metadata})}\n\n"
             try:
-                with requests.post(f"{OLLAMA_API_URL}/api/chat", json=payload, stream=True, timeout=180) as r:
-                    if r.status_code != 200:
-                        yield f"data: {json.dumps({'error': 'Ollama error', 'detail': r.text})}\n\n"
-                        return
-                    for line in r.iter_lines():
-                        if line:
-                            decoded_line = line.decode('utf-8')
-                            try:
-                                json_line = json.loads(decoded_line)
-                                content = json_line.get("message", {}).get("content", "")
-                                if content:
-                                    yield f"data: {json.dumps({'delta': content})}\n\n"
-                                if json_line.get("done", False):
-                                    break
-                            except json.JSONDecodeError:
-                                pass
+                if backend == "llamacpp":
+                    # Llama.cpp / OpenAI SSE streaming
+                    with requests.post(f"{backend_url}/v1/chat/completions", json=payload, stream=True, timeout=180) as r:
+                        if r.status_code != 200:
+                            yield f"data: {json.dumps({'error': 'llama.cpp error', 'detail': r.text})}\n\n"
+                            return
+                        for line in r.iter_lines():
+                            if line:
+                                decoded_line = line.decode('utf-8').strip()
+                                if decoded_line.startswith("data: "):
+                                    data_content = decoded_line[len("data: "):]
+                                    if data_content == "[DONE]":
+                                        break
+                                    try:
+                                        json_line = json.loads(data_content)
+                                        delta = json_line.get("choices", [{}])[0].get("delta", {}).get("content", "")
+                                        if delta:
+                                            yield f"data: {json.dumps({'delta': delta})}\n\n"
+                                    except json.JSONDecodeError:
+                                        pass
+                else:
+                    # Ollama streaming
+                    with requests.post(f"{backend_url}/api/chat", json=payload, stream=True, timeout=180) as r:
+                        if r.status_code != 200:
+                            yield f"data: {json.dumps({'error': 'Ollama error', 'detail': r.text})}\n\n"
+                            return
+                        for line in r.iter_lines():
+                            if line:
+                                decoded_line = line.decode('utf-8')
+                                try:
+                                    json_line = json.loads(decoded_line)
+                                    content = json_line.get("message", {}).get("content", "")
+                                    if content:
+                                        yield f"data: {json.dumps({'delta': content})}\n\n"
+                                    if json_line.get("done", False):
+                                        break
+                                except json.JSONDecodeError:
+                                    pass
             except Exception as e:
                 yield f"data: {json.dumps({'error': 'Connection error', 'detail': str(e)})}\n\n"
         headers = {
@@ -290,49 +380,80 @@ async def chat(request: Request):
         return StreamingResponse(event_stream(), media_type="text/event-stream", headers=headers)
         
     try:
-        response = requests.post(f"{OLLAMA_API_URL}/api/chat", json=payload, timeout=180)
-        if response.status_code != 200:
-            return JSONResponse(
-                content={"error": f"Ollama returned error status {response.status_code}", "detail": response.text}, 
-                status_code=502
-            )
-            
-        ollama_res = response.json()
-        assistant_message = ollama_res.get("message", {}).get("content", "")
+        if backend == "llamacpp":
+            response = requests.post(f"{backend_url}/v1/chat/completions", json=payload, timeout=180)
+            if response.status_code != 200:
+                return JSONResponse(
+                    content={"error": f"llama.cpp returned error status {response.status_code}", "detail": response.text}, 
+                    status_code=502
+                )
+            res_data = response.json()
+            assistant_message = res_data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        else:
+            response = requests.post(f"{backend_url}/api/chat", json=payload, timeout=180)
+            if response.status_code != 200:
+                return JSONResponse(
+                    content={"error": f"Ollama returned error status {response.status_code}", "detail": response.text}, 
+                    status_code=502
+                )
+            ollama_res = response.json()
+            assistant_message = ollama_res.get("message", {}).get("content", "")
         
         return {"message": assistant_message, "sources": sources_metadata}
         
     except requests.exceptions.RequestException as e:
         return JSONResponse(
-            content={"error": "Could not connect to Ollama server.", "detail": str(e)}, 
+            content={"error": f"Could not connect to {backend} server.", "detail": str(e)}, 
             status_code=503
         )
 
 @app.get("/api/health")
 async def health():
     """Verify backend health and check connections."""
-    ollama_status = "offline"
+    backend_status = "offline"
+    backend_type = "ollama"
     available_models = []
     
+    # Detect backend
     try:
-        r = requests.get(f"{OLLAMA_API_URL}/api/tags", timeout=3)
+        r = requests.get("http://localhost:8080/health", timeout=1)
         if r.status_code == 200:
-            ollama_status = "online"
-            models_data = r.json()
-            available_models = [m["name"] for m in models_data.get("models", [])]
+            backend_type = "llamacpp"
+            backend_status = "online"
     except Exception:
         pass
         
+    if backend_status == "offline":
+        try:
+            r = requests.get(f"{OLLAMA_API_URL}/api/tags", timeout=1)
+            if r.status_code == 200:
+                backend_type = "ollama"
+                backend_status = "online"
+                models_data = r.json()
+                available_models = [m["name"] for m in models_data.get("models", [])]
+        except Exception:
+            pass
+            
+    if backend_status == "offline":
+        try:
+            r = requests.get(f"{OLLAMA_API_URL}/health", timeout=1)
+            if r.status_code == 200:
+                backend_type = "llamacpp"
+                backend_status = "online"
+        except Exception:
+            pass
+            
     kb_loaded = len(retriever.documents) > 0
     
     return {
         "status": "healthy",
         "database_loaded": kb_loaded,
         "database_records": len(retriever.documents),
-        "ollama_connection": ollama_status,
-        "ollama_url": OLLAMA_API_URL,
-        "ollama_model": OLLAMA_MODEL,
-        "ollama_model_available": OLLAMA_MODEL in available_models or f"{OLLAMA_MODEL}:latest" in available_models,
+        "backend_type": backend_type,
+        "backend_connection": backend_status,
+        # Legacy keys for frontend compatibility (resolves 'Disconnected' status badge)
+        "ollama_connection": backend_status,
+        "ollama_model": "Qwen 2.5 3B (Llama.cpp GPU)" if backend_type == "llamacpp" else OLLAMA_MODEL,
         "available_models": available_models
     }
 

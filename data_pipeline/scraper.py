@@ -195,45 +195,80 @@ def main():
     moh_guidelines = [
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Phân loại ung thư phổi",
             "content": "Ung thư phổi được chia thành hai nhóm chính dựa trên đặc điểm mô bệnh học: (1) Ung thư phổi không tế bào nhỏ (NSCLC - Non-Small Cell Lung Cancer) chiếm khoảng 85% tổng số ca ung thư phổi, bao gồm ba phân nhóm: ung thư biểu mô tuyến (adenocarcinoma) - phổ biến nhất, thường gặp ở người không hút thuốc và phụ nữ; ung thư biểu mô vảy (squamous cell carcinoma) - liên quan chặt chẽ với hút thuốc lá; và ung thư tế bào lớn (large cell carcinoma) - có thể xuất hiện ở bất kỳ vị trí nào trong phổi, phát triển nhanh. (2) Ung thư phổi tế bào nhỏ (SCLC - Small Cell Lung Cancer) chiếm khoảng 15% ca ung thư phổi, đặc trưng bởi tốc độ phát triển rất nhanh, khả năng di căn sớm đến não, gan, xương và tuyến thượng thận, liên quan mật thiết đến hút thuốc lá nặng. SCLC thường đáp ứng tốt với hóa trị và xạ trị ban đầu nhưng tỷ lệ tái phát rất cao."
         },
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Triệu chứng nhận biết sớm ung thư phổi",
             "content": "Các triệu chứng nhận biết sớm ung thư phổi bao gồm: Ho kéo dài trên 3 tuần không đỡ mặc dù đã điều trị, đặc biệt cần lưu ý ở người trên 40 tuổi. Thay đổi tính chất ho ở người hút thuốc lá lâu năm (ho nhiều hơn, ho nặng hơn, thay đổi âm sắc ho). Ho ra máu hoặc đàm lẫn máu (hemoptysis) dù chỉ một lần cũng cần đi khám ngay. Khó thở tiến triển, ban đầu khi gắng sức sau đó cả khi nghỉ ngơi. Đau ngực kéo dài, đau tăng khi hít sâu hoặc ho. Khàn tiếng kéo dài trên 2 tuần do khối u chèn ép dây thần kinh thanh quản quặt ngược. Sụt cân không chủ đích (giảm trên 5% trọng lượng cơ thể trong 6 tháng mà không rõ nguyên nhân). Mệt mỏi kéo dài, suy nhược toàn thân không giải thích được. Nhiễm trùng phổi tái đi tái lại (viêm phổi, viêm phế quản) ở cùng một vị trí. Khi xuất hiện bất kỳ triệu chứng nào trên, đặc biệt ở người có yếu tố nguy cơ, cần đi khám chuyên khoa hô hấp hoặc ung bướu ngay."
         },
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Yếu tố nguy cơ gây ung thư phổi",
             "content": "Các yếu tố nguy cơ chính gây ung thư phổi gồm: Hút thuốc lá là nguyên nhân hàng đầu, gây ra khoảng 90% các ca ung thư phổi. Nguy cơ tăng tỷ lệ thuận với số bao-năm (pack-years = số bao thuốc hút mỗi ngày x số năm hút). Người hút 1 bao/ngày trong 20 năm (20 bao-năm) có nguy cơ cao gấp 20-30 lần so với người không hút. Hút thuốc lá thụ động (secondhand smoke) cũng làm tăng nguy cơ ung thư phổi 20-30%. Tiếp xúc nghề nghiệp với khí radon (chất phóng xạ tự nhiên trong đất), amiăng (asbestos) trong xây dựng và công nghiệp, các kim loại nặng (arsenic, chromium, nickel). Ô nhiễm không khí (bụi mịn PM2.5) được WHO xếp vào nhóm chất gây ung thư. Tiền sử gia đình có người thân cấp 1 (bố mẹ, anh chị em ruột) mắc ung thư phổi làm tăng nguy cơ 2-3 lần. Tiền sử bệnh phổi mạn tính như bệnh phổi tắc nghẽn mạn tính (COPD), xơ phổi (pulmonary fibrosis) cũng là yếu tố nguy cơ độc lập."
         },
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Sàng lọc ung thư phổi bằng CT liều thấp (LDCT)",
             "content": "Chụp cắt lớp vi tính liều thấp (Low-Dose CT - LDCT) là phương pháp sàng lọc ung thư phổi hiệu quả nhất hiện nay, được Bộ Y tế và các tổ chức quốc tế khuyến cáo. Đối tượng sàng lọc: Người từ 50 đến 80 tuổi có tiền sử hút thuốc lá từ 20 bao-năm trở lên, bao gồm cả những người đã bỏ thuốc nhưng chưa quá 15 năm. Tần suất: Chụp LDCT hàng năm. Lợi ích: Nghiên cứu NLST (National Lung Screening Trial) cho thấy sàng lọc bằng LDCT giúp giảm 20% tỷ lệ tử vong do ung thư phổi so với chụp X-quang ngực thông thường, nhờ phát hiện ung thư ở giai đoạn sớm khi khối u còn nhỏ và có thể phẫu thuật triệt căn. Lưu ý: X-quang ngực thường KHÔNG đủ nhạy để phát hiện ung thư phổi giai đoạn sớm. Nốt phổi đơn độc phát hiện trên LDCT cần được theo dõi và đánh giá theo hệ thống Lung-RADS để quyết định xử trí tiếp theo."
         },
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Tổng quan phương pháp điều trị ung thư phổi",
             "content": "Điều trị ung thư phổi phụ thuộc vào loại mô bệnh học, giai đoạn bệnh, tình trạng sức khỏe tổng quát và các đột biến gen của bệnh nhân. Các phương pháp điều trị chính gồm: (1) Phẫu thuật: Áp dụng cho giai đoạn sớm (I-II) của NSCLC, bao gồm cắt thùy phổi (lobectomy), cắt phân thùy, hoặc cắt phổi toàn bộ (pneumonectomy). (2) Hóa trị: Sử dụng các phác đồ dựa trên platinum như cisplatin hoặc carboplatin phối hợp với pemetrexed, paclitaxel, hoặc gemcitabine. Có thể dùng hóa trị bổ trợ sau phẫu thuật hoặc hóa trị tân bổ trợ trước phẫu thuật. (3) Xạ trị: Dùng đơn độc hoặc phối hợp hóa-xạ trị đồng thời cho giai đoạn III. Xạ trị lập thể định vị thân (SBRT) cho khối u nhỏ không mổ được. (4) Liệu pháp nhắm đích (Targeted Therapy): Gefitinib, erlotinib, osimertinib cho bệnh nhân có đột biến EGFR; crizotinib, alectinib cho đột biến ALK; dabrafenib cho đột biến BRAF. Xét nghiệm đột biến gen là bắt buộc trước khi chỉ định. (5) Liệu pháp miễn dịch (Immunotherapy): Pembrolizumab, nivolumab, atezolizumab cho bệnh nhân có PD-L1 dương tính hoặc phối hợp với hóa trị. Liệu pháp miễn dịch đã cải thiện đáng kể tiên lượng sống cho ung thư phổi giai đoạn muộn."
         },
         {
             "source": "Bộ Y tế Việt Nam",
-            "url": "https://kcb.vn/huong-dan-chan-doan-dieu-tri-ung-thu-phoi",
+            "url": "https://vilaphoikhoe.vn",
             "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
             "section_title": "Phân giai đoạn ung thư phổi theo hệ thống TNM",
             "content": "Hệ thống phân giai đoạn TNM (Tumor-Node-Metastasis) là tiêu chuẩn quốc tế để đánh giá mức độ lan rộng của ung thư phổi, quyết định phương pháp điều trị và tiên lượng. Giai đoạn I-II: Khối u còn khu trú tại phổi, chưa hoặc chỉ di căn hạch rốn phổi cùng bên. Có thể phẫu thuật cắt bỏ triệt căn. Tỷ lệ sống 5 năm dao động từ 60-90% tùy kích thước khối u. Đây là giai đoạn có tiên lượng tốt nhất. Giai đoạn III: Ung thư đã lan rộng cục bộ đến hạch trung thất hoặc xâm lấn các cấu trúc lân cận (thành ngực, màng phổi, thực quản). Điều trị chủ yếu bằng hóa-xạ trị đồng thời, sau đó có thể duy trì bằng liệu pháp miễn dịch (durvalumab). Một số trường hợp IIIA có thể phẫu thuật sau hóa trị tân bổ trợ. Giai đoạn IV: Ung thư đã di căn xa đến các cơ quan khác (não, gan, xương, tuyến thượng thận, phổi đối bên). Điều trị toàn thân bằng hóa trị, liệu pháp nhắm đích (nếu có đột biến driver), hoặc liệu pháp miễn dịch. Mục tiêu chính là kéo dài sống và cải thiện chất lượng cuộc sống. Tỷ lệ sống 5 năm toàn bộ cho tất cả các giai đoạn ung thư phổi khoảng 20%, nhấn mạnh tầm quan trọng của phát hiện sớm qua sàng lọc."
+        },
+        {
+            "source": "Bộ Y tế Việt Nam",
+            "url": "https://vilaphoikhoe.vn",
+            "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
+            "section_title": "Dinh dưỡng y khoa và giải độc tin đồn thất thiệt",
+            "content": "Chế độ dinh dưỡng đóng vai trò cốt lõi trong điều trị ung thư phổi. Tuyệt đối bác bỏ tin đồn sai khoa học về việc 'bỏ đói tế bào ung thư' bằng cách ăn kiêng nghiêm ngặt, ăn cơm với muối vừng, hoặc kiêng khem các thực phẩm bổ dưỡng. Việc này dẫn đến suy kiệt (cachexia), suy dinh dưỡng, làm giảm sức đề kháng và buộc phải trì hoãn phẫu thuật, hóa-xạ trị. Bệnh nhân cần chế độ ăn uống cân bằng, giàu năng lượng và protein. Đối với các thực phẩm như yến sào, sữa cao năng lượng, và nhân sâm: yến sào giàu axit amin giúp hồi phục niêm mạc phế quản và nâng cao thể trạng sau hóa-xạ trị; sữa cung cấp dinh dưỡng dễ hấp thu khi bệnh nhân chán ăn, mệt mỏi; nhân sâm hỗ trợ giảm suy nhược. Các thực phẩm này hoàn toàn KHÔNG làm khối u phát triển nhanh hơn mà giúp bệnh nhân đủ sức khỏe để tuân thủ phác đồ điều trị của bác sĩ chuyên khoa."
+        },
+        {
+            "source": "Bộ Y tế Việt Nam",
+            "url": "https://vilaphoikhoe.vn",
+            "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
+            "section_title": "Phân biệt thuốc nhắm trúng đích cho đột biến gen EGFR và ALK",
+            "content": "Trong điều trị ung thư phổi không tế bào nhỏ (NSCLC) giai đoạn muộn, việc phân loại chính xác đột biến gen để chỉ định đúng thuốc nhắm trúng đích (TKI) là bắt buộc. (1) Đối với đột biến gen EGFR dương tính: Sử dụng các thuốc ức chế EGFR thế hệ 1 (Gefitinib, Erlotinib), thế hệ 2 (Afatinib), hoặc thế hệ 3 (Osimertinib - thế hệ mới nhất hiệu quả cao và vượt qua hàng rào máu não tốt). (2) Đối với đột biến gen ALK dương tính: Sử dụng các thuốc ức chế ALK thế hệ 1 (Crizotinib) hoặc thế hệ 2 (Alectinib, Ceritinib, Brigatinib). Trong đó, Alectinib là thuốc nhắm đích thế hệ mới điều trị bước 1 tiêu chuẩn cho đột biến ALK dương tính. Tuyệt đối không sử dụng Gefitinib hoặc Osimertinib (là thuốc kháng EGFR) cho bệnh nhân có đột biến ALK dương tính vì không có tác dụng điều trị và làm mất cơ hội chữa bệnh."
+        },
+        {
+            "source": "Bộ Y tế Việt Nam",
+            "url": "https://vilaphoikhoe.vn",
+            "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
+            "section_title": "Cơ chế kháng thuốc nhắm trúng đích và hướng xử trí",
+            "content": "Hầu hết bệnh nhân điều trị bằng thuốc nhắm trúng đích (EGFR-TKI hoặc ALK-TKI) sẽ xuất hiện hiện tượng kháng thuốc (drug resistance) sau trung bình 9 đến 15 tháng điều trị. Nguyên nhân do tế bào ung thư tiếp tục đột biến (ví dụ: đột biến phụ T790M, C797S đối với EGFR; hoặc đột biến G1202R đối với ALK) hoặc chuyển dạng mô bệnh học. Hướng xử trí y khoa: Khi nghi ngờ kháng thuốc (triệu chứng lâm sàng nặng lên hoặc hình ảnh học cho thấy u to ra), bác sĩ sẽ chỉ định sinh thiết lại mô u hoặc sinh thiết lỏng (xét nghiệm ctDNA trong máu) để xác định cơ chế kháng thuốc cụ thể. Dựa vào đó, phác đồ điều trị sẽ được điều chỉnh: chuyển sang thuốc thế hệ tiếp theo (như dùng Osimertinib nếu kháng TKI thế hệ 1/2 do xuất hiện đột biến T790M; hoặc dùng Lorlatinib nếu kháng ALK thế hệ 2), phối hợp với hóa trị, hoặc chuyển sang điều trị miễn dịch."
+        },
+        {
+            "source": "Bộ Y tế Việt Nam",
+            "url": "https://vilaphoikhoe.vn",
+            "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
+            "section_title": "Điều trị hóa-xạ trị đồng thời và miễn dịch duy trì cho giai đoạn III",
+            "content": "Đối với ung thư phổi không tế bào nhỏ (NSCLC) giai đoạn III không thể phẫu thuật cắt bỏ triệt căn (lan rộng tại chỗ - tại vùng), hóa-xạ trị đồng thời (concurrent Chemoradiotherapy - cCRT) sử dụng phác đồ hóa chất dựa trên platinum kết hợp xạ trị phân liều là tiêu chuẩn điều trị vàng. Ngay sau khi hoàn thành hóa-xạ trị đồng thời mà bệnh không tiến triển (ổn định hoặc đáp ứng một phần/hoàn toàn), bệnh nhân cần được điều trị duy trì bằng liệu pháp miễn dịch với thuốc Durvalumab (kháng thể kháng PD-L1) kéo dài tối đa 12 tháng. Phác đồ này (theo thử nghiệm lâm sàng PACIFIC) đã được Bộ Y tế phê duyệt giúp kéo dài thời gian sống thêm không tiến triển bệnh và tăng đáng kể tỷ lệ sống sót toàn bộ cho bệnh nhân ung thư phổi giai đoạn III."
+        },
+        {
+            "source": "Bộ Y tế Việt Nam",
+            "url": "https://vilaphoikhoe.vn",
+            "title": "Hướng dẫn chẩn đoán và điều trị ung thư phổi của Bộ Y tế",
+            "section_title": "Tầm soát ung thư phổi cho người hút thuốc thụ động và tiền sử gia đình",
+            "content": "Bên cạnh người hút thuốc lá chủ động, các đối tượng có nguy cơ cao khác cũng cần lưu ý tầm soát ung thư phổi. (1) Người tiếp xúc thường xuyên với khói thuốc lá thụ động (hít khói thuốc từ người khác tại nhà hoặc nơi làm việc) có nguy cơ mắc ung thư phổi tăng từ 20-30%. (2) Người có tiền sử gia đình trực hệ (bố, mẹ, anh, chị, em ruột) mắc ung thư phổi có nguy cơ cao gấp 2-3 lần bình thường. Các đối tượng này, đặc biệt khi trên 50 tuổi hoặc đi kèm các yếu tố nguy cơ khác như COPD, phơi nhiễm amiăng nghề nghiệp, nên tham khảo ý kiến bác sĩ chuyên khoa Hô hấp hoặc Ung bướu để đánh giá nguy cơ cá thể hóa. Bác sĩ có thể chỉ định chụp cắt lớp vi tính ngực liều thấp (LDCT) để tầm soát sớm thay vì chụp X-quang ngực thông thường không đủ độ nhạy."
         }
     ]
 

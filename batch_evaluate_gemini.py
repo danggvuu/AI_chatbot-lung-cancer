@@ -79,6 +79,45 @@ Bạn bắt buộc phải trả về kết quả dưới dạng một MẢNG JSO
 
 def clean_json_string(text):
     text = text.strip()
+    
+    # 1. Thử tìm khối code block ```json ... ``` trước
+    code_block_match = re.search(r'```json\s*(.*?)\s*```', text, re.DOTALL | re.IGNORECASE)
+    if code_block_match:
+        return code_block_match.group(1).strip()
+        
+    code_block_match_generic = re.search(r'```\s*(.*?)\s*```', text, re.DOTALL)
+    if code_block_match_generic:
+        candidate = code_block_match_generic.group(1).strip()
+        if candidate.startswith('[') or candidate.startswith('{'):
+            return candidate
+            
+    # 2. Sử dụng giải thuật đếm ngoặc (bracket nesting tracking) để tìm chính xác mảng JSON đầu tiên
+    first_bracket = text.find('[')
+    if first_bracket != -1:
+        nesting = 0
+        in_string = False
+        escape = False
+        for idx in range(first_bracket, len(text)):
+            char = text[idx]
+            if escape:
+                escape = False
+                continue
+            if char == '\\':
+                escape = True
+                continue
+            if char == '"':
+                in_string = not in_string
+                continue
+            if not in_string:
+                if char == '[':
+                    nesting += 1
+                elif char == ']':
+                    nesting -= 1
+                    if nesting == 0:
+                        # Tìm thấy ngoặc đóng khớp của mảng chính
+                        return text[first_bracket:idx+1]
+                        
+    # 3. Dự phòng bằng regex tham lam
     match = re.search(r'\[.*\]', text, re.DOTALL)
     if match:
         return match.group(0)
@@ -89,7 +128,9 @@ def call_gemini_batch(batch_data):
     if not gemini_key:
         raise Exception("❌ Thiếu GEMINI_API_KEY trong biến môi trường!")
         
-    models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-3.5-flash"]
+    models = [
+        "gemini-3.1-flash-lite"
+    ]
     
     # Format batch content for prompt
     formatted_cases = []
