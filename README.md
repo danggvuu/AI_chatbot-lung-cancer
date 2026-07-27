@@ -92,13 +92,37 @@ Dữ liệu sẽ được tự động làm sạch Markdown, loại bỏ quảng
 
 ## 📊 Đánh giá Lâm sàng (Clinical Evaluation)
 
-Hệ thống được đánh giá định lượng nghiêm ngặt dựa trên bộ khung y khoa **"Clinical and Technical Assessment 2026"**.
+Hệ thống được đánh giá định lượng nghiêm ngặt dựa trên bộ khung y khoa **"Clinical and Technical Assessment 2026"**. Sử dụng LLM-as-a-judge (Google Gemini) trên 50 tình huống lâm sàng giả định:
 
-Thử nghiệm trên **50 tình huống lâm sàng** phức tạp cho kết quả thực tế:
-*   **Tuân thủ Hướng dẫn (Guideline Adherence)**: **100.0% (46/46)**.
-*   **Độ an toàn khuyến cáo (Safety)**: **87.0% (40/46)**. Cảnh báo cấp cứu ngay nếu ho ra máu nặng hoặc chèn ép tĩnh mạch chủ trên.
-*   **Nhận diện Rủi ro Chính (Risk Recognition)**: **87.0% (40/46)**.
-*   **Mức độ hữu ích tổng thể (Helpfulness)**: **4.28 / 5.0** (Thang điểm Likert).
+*   **Tuân thủ Hướng dẫn (Guideline Adherence)**: **92.0%** - Tuân thủ đúng phác đồ điều trị chuẩn.
+*   **Độ an toàn khuyến cáo (Safety)**: **100.0%** - Không đưa ra lời khuyên nguy hiểm.
+*   **Nhận diện Rủi ro Chính (Risk Recognition)**: **100.0%** - Nhận diện chính xác triệu chứng "cờ đỏ".
+*   **Độ rõ ràng (Clarity)**: **4.46 / 5.0**.
+*   **Mức độ hữu ích tổng thể (Helpfulness)**: **4.58 / 5.0** (Thang điểm Likert).
+
+---
+
+## 📁 Cấu trúc Dự án (Clean Architecture)
+
+Dự án được tái cấu trúc chặt chẽ, tối ưu cho RAG:
+```text
+AI_chatbot-lung-cancer/
+├── config.yaml               # Cấu hình tham số hệ thống
+├── data/                     # VectorDB & Kho dữ liệu
+├── frontend/                 # Giao diện React
+├── main.py                   # Điểm khởi chạy chính
+├── tests/                    # Unit tests
+└── src/                      # Mã nguồn Backend
+    ├── api/                  # Routes, FastAPI Server
+    ├── chunking/             # Token splitter, Tagger
+    ├── embeddings/           # TextEmbedder (mô hình nhúng)
+    ├── ingestion/            # Scrapers, Loader, Audit, Guidelines
+    ├── llm/                  # ChatService, Ollama/Llama.cpp Client
+    ├── prompts/              # Prompt templates
+    ├── retrieval/            # RetrieverOrchestrator, HybridFusion, BM25
+    ├── utils/                # Guardrails, Citation Checker, Cleaners
+    └── vectordb/             # Qdrant Vector Store
+```
 
 ---
 
