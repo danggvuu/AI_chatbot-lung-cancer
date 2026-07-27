@@ -3,8 +3,8 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from bs4 import BeautifulSoup
-from scrapers.base_scraper import BaseScraper
-from cleaners.noise_filter import NoiseFilter
+from src.ingestion.scrapers.base_scraper import BaseScraper
+from src.utils.cleaners.noise_filter import NoiseFilter
 
 class HospitalScraper(BaseScraper):
     def __init__(self):

@@ -4,9 +4,9 @@ import sys
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data_pipeline.firecrawl_ingester import FirecrawlIngester
-from data_pipeline.cleaners.noise_filter import NoiseFilter
-from data_pipeline.cleaners.deduplicator import Deduplicator
+from src.ingestion.loader import FirecrawlIngester
+from src.utils.cleaners.noise_filter import NoiseFilter
+from src.utils.cleaners.deduplicator import Deduplicator
 
 def test_markdown_parser():
     ingester = FirecrawlIngester(api_key="mock_key")

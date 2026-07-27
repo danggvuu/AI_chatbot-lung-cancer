@@ -2,13 +2,13 @@ import os
 import json
 import yaml
 import logging
-from .sparse.bm25_index import BM25Index
-from .dense.embedding_model import EmbeddingModel
-from .dense.qdrant_store import QdrantStore
-from .hybrid_fusion import reciprocal_rank_fusion
-from chunking.token_splitter import TokenSplitter
-from chunking.tagger import Tagger
-from chunking.chunk_validator import ChunkValidator
+from src.retrieval.sparse.bm25_index import BM25Index
+from src.embeddings.embedder import EmbeddingModel
+from src.vectordb.vector_store import QdrantStore
+from src.retrieval.hybrid_fusion import reciprocal_rank_fusion
+from src.chunking.token_splitter import TokenSplitter
+from src.chunking.tagger import Tagger
+from src.chunking.chunk_validator import ChunkValidator
 import datetime
 
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ class RetrieverOrchestrator:
         self.documents = []
 
     def load_or_build_index(self, kb_path="data/knowledge_base.json"):
-        kb_full_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), kb_path)
+        kb_full_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), kb_path)
         if not os.path.exists(kb_full_path):
             logger.warning(f"Knowledge base not found at {kb_full_path}")
             return False
@@ -133,7 +133,7 @@ class RetrieverOrchestrator:
 
         # 4. Init Reranker if enabled
         if self.rerank_cfg.get("enabled", True) and self.reranker is None:
-            from .reranker import CrossEncoderReranker
+            from src.retrieval.reranker import CrossEncoderReranker
             print("Khởi tạo Reranker...")
             self.reranker = CrossEncoderReranker(model_name=self.rerank_cfg.get("model", "cross-encoder/ms-marco-MiniLM-L-6-v2"))
 

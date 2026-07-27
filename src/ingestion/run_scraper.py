@@ -6,9 +6,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scrapers.hospital_scraper import HospitalScraper
-from cleaners.deduplicator import Deduplicator
-from guidelines_injector import GuidelinesInjector
+from src.ingestion.scrapers.hospital_scraper import HospitalScraper
+from src.utils.cleaners.deduplicator import Deduplicator
+from src.ingestion.guidelines_injector import GuidelinesInjector
 
 def load_config():
     config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", "sources_config.yaml")

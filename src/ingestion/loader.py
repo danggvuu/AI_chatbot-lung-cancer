@@ -9,8 +9,8 @@ from urllib.parse import urlparse
 # Ensure absolute imports work regardless of run directory
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data_pipeline.cleaners.noise_filter import NoiseFilter
-from data_pipeline.cleaners.deduplicator import Deduplicator
+from src.utils.cleaners.noise_filter import NoiseFilter
+from src.utils.cleaners.deduplicator import Deduplicator
 
 class FirecrawlIngester:
     def __init__(self, api_key=None, api_url=None):

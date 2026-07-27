@@ -1,11 +1,11 @@
 import os
 import yaml
 import json
-from indexing.retriever_orchestrator import RetrieverOrchestrator
-from .prompt_builder import PromptBuilder
-from .guardrails import Guardrails
-from .citation_checker import CitationChecker
-from .llm_client import OllamaClient
+from src.retrieval.retriever import RetrieverOrchestrator
+from src.prompts.prompt_templates import PromptBuilder
+from src.utils.guardrails import Guardrails
+from src.utils.citation_checker import CitationChecker
+from src.llm.llm_client import OllamaClient
 
 class ChatService:
     def __init__(self):

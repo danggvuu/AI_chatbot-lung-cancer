@@ -1,7 +1,7 @@
 """LungCare AI - Backward-compatible entrypoint."""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from api.server import create_app
+from src.api.server import create_app
 
 app = create_app()
 

@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fastapi.testclient import TestClient
-from api.server import create_app
+from src.api.server import create_app
 
 def test_chat_service_lazy_init_and_cleanup():
     """
@@ -11,6 +11,8 @@ def test_chat_service_lazy_init_and_cleanup():
     và tài nguyên (Qdrant) được giải phóng khi ứng dụng tắt.
     """
     app = create_app()
+    
+    from unittest.mock import patch
     
     # Tại thời điểm này, ChatService CHƯA được khởi tạo
     assert not hasattr(app.state, "chat_service")
@@ -29,8 +31,12 @@ def test_chat_service_lazy_init_and_cleanup():
             "messages": [{"role": "user", "content": "hello"}],
             "stream": False
         }
-        response = client.post("/api/chat", json=payload)
-        assert response.status_code == 200
+        
+        with patch.object(app.state.chat_service, 'get_chat_response_sync') as mock_chat:
+            mock_chat.return_value = {"answer": "mock response"}
+            response = client.post("/api/chat", json=payload)
+            assert response.status_code == 200
         
     # Ra khỏi with-block, ứng dụng đã shutdown
     # TestClient sẽ gọi shutdown/cleanup
+

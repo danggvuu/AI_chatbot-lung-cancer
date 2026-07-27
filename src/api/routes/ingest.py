@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.responses import JSONResponse
-from data_pipeline.firecrawl_ingester import FirecrawlIngester
+from src.ingestion.loader import FirecrawlIngester
 import logging
 import asyncio
 

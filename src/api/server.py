@@ -10,7 +10,7 @@ import yaml
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Khởi tạo 1 lần duy nhất khi server bắt đầu
-    from rag_engine.chat_service import ChatService
+    from src.llm.chat_service import ChatService
     app.state.chat_service = ChatService()
     yield
     # Cleanup khi server tắt
@@ -63,6 +63,6 @@ def create_app() -> FastAPI:
             return FileResponse(os.path.join(FRONTEND_DIST, "icons.svg"))
 
     # Mount static for R plots
-    app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")), name="static")
+    app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "static")), name="static")
 
     return app

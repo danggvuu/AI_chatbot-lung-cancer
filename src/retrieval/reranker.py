@@ -1,4 +1,4 @@
-from indexing.dense.embedding_model import detect_device
+from src.embeddings.embedder import detect_device
 
 class CrossEncoderReranker:
     """Rerank top-N kết quả sau RRF bằng Cross-Encoder."""

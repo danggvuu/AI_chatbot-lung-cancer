@@ -4,8 +4,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from rag_engine.chat_service import ChatService
-from api.server import create_app
+from src.llm.chat_service import ChatService
+from src.api.server import create_app
 from fastapi.testclient import TestClient
 
 def test_app_creation():
